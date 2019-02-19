@@ -5,6 +5,8 @@
 #include "TabDriverDialog.h"
 #include "TabPositionDialog.h"
 #include "TabExtremumDialog.h"
+#include "TabBatteryV.h"
+#include "TabBatteryT.h"
 
 
 //class TabCarDialog;
@@ -45,6 +47,8 @@ private:
 	TabDriverDialog m_dlg_driver;
 	TabPositionDialog m_dlg_position;
 	TabExtremumDialog m_dlg_extremum;
+	TabBatteryV m_dlg_battery_v;
+	TabBatteryT m_dlg_battery_t;
 
 public:
 	afx_msg void OnTcnSelchangeTabMonitor(NMHDR *pNMHDR, LRESULT *pResult);

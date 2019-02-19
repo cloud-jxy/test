@@ -60,11 +60,15 @@ void CInfoDialog::InitControlContainer() {
 	m_tab_monitor.InsertItem(1, "驱动电机");
 	m_tab_monitor.InsertItem(2, "位置信息");
 	m_tab_monitor.InsertItem(3, "极性数值");
+	m_tab_monitor.InsertItem(4, "电池电压");
+	m_tab_monitor.InsertItem(5, "电池温度");
 
 	m_dlg_car.Create(IDD_TAB_CAR_DIALOG, &m_tab_monitor);
 	m_dlg_driver.Create(IDD_TAB_DRIVER_DIALOG, &m_tab_monitor);
 	m_dlg_position.Create(IDD_TAB_POSITION_DIALOG, &m_tab_monitor);
 	m_dlg_extremum.Create(IDD_TAB_EXTREMUM_DIALOG, &m_tab_monitor);
+	m_dlg_battery_v.Create(IDD_TAB_BATTERY_VOLTAGE_DIALOG, &m_tab_monitor);
+	m_dlg_battery_t.Create(IDD_TAB_BATTERY_T_DIALOG, &m_tab_monitor);
 
 	CRect rect;
 	m_tab_monitor.GetClientRect(&rect);
@@ -77,11 +81,15 @@ void CInfoDialog::InitControlContainer() {
 	m_dlg_driver.MoveWindow(&rect);
 	m_dlg_position.MoveWindow(&rect);
 	m_dlg_extremum.MoveWindow(&rect);
+	m_dlg_battery_v.MoveWindow(&rect);
+	m_dlg_battery_t.MoveWindow(&rect);
 
 	m_dlg_car.ShowWindow(SW_SHOW);
 	m_dlg_driver.ShowWindow(SW_HIDE);
 	m_dlg_position.ShowWindow(SW_HIDE);
 	m_dlg_extremum.ShowWindow(SW_HIDE);
+	m_dlg_battery_v.ShowWindow(SW_HIDE);
+	m_dlg_battery_t.ShowWindow(SW_HIDE);
 
 	m_tab_monitor.SetCurSel(0);
 }
@@ -92,7 +100,7 @@ void CInfoDialog::OnTcnSelchangeTabMonitor(NMHDR *pNMHDR, LRESULT *pResult)
 	// TODO: 在此添加控件通知处理程序代码
 	*pResult = 0;
 
-	CDialog *p_dialogs[] = {&m_dlg_car, &m_dlg_driver, &m_dlg_position, &m_dlg_extremum};
+	CDialog *p_dialogs[] = {&m_dlg_car, &m_dlg_driver, &m_dlg_position, &m_dlg_extremum, &m_dlg_battery_v, &m_dlg_battery_t};
 	int len = sizeof(p_dialogs) / sizeof(CDialog *);
 	int index = m_tab_monitor.GetCurSel();
 	int i = 0;

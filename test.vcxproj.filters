@@ -45,6 +45,12 @@
     <ClCompile Include="TabExtremumDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TabBatteryV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TabBatteryT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="test.rc">
@@ -86,6 +92,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TabExtremumDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TabBatteryV.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TabBatteryT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
