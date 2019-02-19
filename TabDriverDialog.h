@@ -20,4 +20,14 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CString m_str_machine_num;
+	CString m_str_machine_id;
+	CString m_str_machine_rev;
+	CString m_str_machine_status;
+	CString m_str_machine_t;
+	CString m_str_machine_torque;
+	CString m_str_controner_t;
+	CString m_str_controner_v;
+	CString m_str_controner_i;
 };
