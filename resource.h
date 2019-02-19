@@ -15,7 +15,6 @@
 #define IDD_TAB_POSITION_DIALOG         135
 #define IDD_TAB_EXTREMUM_DIALOG         136
 #define IDD_TAB_BATTERY_VOLTAGE_DIALOG  137
-#define IDD_TAB_BATTERY_VOLTAGE_DIALOG1 138
 #define IDD_TAB_BATTERY_T_DIALOG        138
 #define IDC_COMBO_PORT                  1001
 #define IDC_COMBO_INDEX                 1001
@@ -80,9 +79,33 @@
 #define IDC_EDIT13                      1035
 #define IDC_EDIT14                      1036
 #define IDC_EDIT_READGROUP              1037
-#define IDC_EDIT15                      1037
+#define IDC_EDIT1_DCDC_STATUS           1037
 #define IDC_EDIT_REGISTERVAL            1038
+#define IDC_EDIT_CAR_STATUS             1038
 #define IDC_LIST_INFO                   1039
+#define IDC_EDIT_CHARGING_STATUS        1039
+#define IDC_EDIT_DRIVER_STATUS          1040
+#define IDC_EDIT_BRAKING_STATUS         1041
+#define IDC_EDIT_RUN_MODE               1042
+#define IDC_EDIT_SPEED                  1043
+#define IDC_EDIT_RESISTANCE             1044
+#define IDC_EDIT_MIL                    1045
+#define IDC_EDIT_GEARS                  1046
+#define IDC_EDIT_SOC                    1047
+#define IDC_EDIT1_TOTAL_V               1048
+#define IDC_EDIT1_TOTAL_I               1049
+#define IDC_EDIT_JOURNEY_SPEEDUP        1050
+#define IDC_EDIT1_JOURNEY_BRAKE         1051
+#define IDC_EDIT_                       1052
+#define IDC_EDIT_MACHINE_NUM            1052
+#define IDC_EDIT_MACHINE_ID             1053
+#define IDC_EDIT_MACHINE_REV            1054
+#define IDC_EDIT_MACHINE_STATUS         1055
+#define IDC_EDIT_MACHINE_T              1056
+#define IDC_EDIT_MACHINE_TORQUE         1057
+#define IDC_EDIT_CONTRONER_T            1058
+#define IDC_EDIT_CONTRONER_V            1059
+#define IDC_EDIT_CONTRONER_I            1060
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -97,7 +120,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1024
+#define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
