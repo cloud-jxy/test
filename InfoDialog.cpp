@@ -50,7 +50,7 @@ int CInfoDialog::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	// TODO:  在此添加您专用的创建代码
-	SetWindowText("USBCAN 数据解析");
+	//SetWindowText("USBCAN 数据解析");
 
 	return 0;
 }
