@@ -1,0 +1,10 @@
+*.log
+*.o
+*.exe
+*.sdf
+Release/*
+Debug/*
+*.opensdf
+ipch/*
+*.aps
+.vs/*
