@@ -346,7 +346,7 @@ void CTestDlg::OnButtonConnect()
 	{
 		m_connect=0;
 		Sleep(500);
-		GetDlgItem(IDC_BUTTON_CONNECT)->SetWindowText("Connect");
+		GetDlgItem(IDC_BUTTON_CONNECT)->SetWindowText("´ò¿ª");
 		VCI_CloseDevice(m_devtype,m_devind);
 		return;
 	}
@@ -434,7 +434,7 @@ void CTestDlg::OnButtonConnect()
 	m_connect=1;
 	m_devind=index;
 	m_cannum=cannum;
-	GetDlgItem(IDC_BUTTON_CONNECT)->SetWindowText("Disconnect");
+	GetDlgItem(IDC_BUTTON_CONNECT)->SetWindowText("¹Ø±Õ");
 	AfxBeginThread(ReceiveThread,this, THREAD_PRIORITY_HIGHEST);
 }
 
