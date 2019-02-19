@@ -1,0 +1,540 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\test.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\test.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About test"
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "test 1.0 version",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "Ok",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_TEST_DIALOG DIALOGEX 0, 0, 411, 289
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "testUSBCAN2"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Device parameters ",IDC_STATIC,9,13,342,88
+    LTEXT           "Index:",IDC_STATIC,126,28,45,8
+    COMBOBOX        IDC_COMBO_INDEX,172,26,33,121,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Connect",IDC_BUTTON_CONNECT,296,26,46,14
+    PUSHBUTTON      "Start",IDC_BUTTON_STARTCAN,356,33,46,14
+    PUSHBUTTON      "Reset",IDC_BUTTON_RESETCAN,357,58,46,14
+    LTEXT           "Mode:",IDC_STATIC,21,120,37,8
+    COMBOBOX        IDC_COMBO_SENDTYPE,45,117,77,91,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Format:",IDC_STATIC,134,120,32,8
+    COMBOBOX        IDC_COMBO_SENDFRAMETYPE,166,117,50,63,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Type:",IDC_STATIC,224,120,29,8
+    COMBOBOX        IDC_COMBO_SENDFRAMEFORMAT,251,117,60,63,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "ID:",IDC_STATIC,317,120,21,8
+    EDITTEXT        IDC_EDIT_SENDFRAMEID,333,118,41,12,ES_AUTOHSCROLL
+    LTEXT           "Data:",IDC_STATIC,20,139,21,8
+    EDITTEXT        IDC_EDIT_SENDDATA,44,137,120,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Transmit",IDC_BUTTON_SEND,176,135,41,14
+    GROUPBOX        " Sending Frame",IDC_STATIC,10,106,394,47
+    LISTBOX         IDC_LIST_INFO,16,168,380,110,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        " Information View",IDC_STATIC,10,158,393,125
+    LTEXT           "Channel:",IDC_STATIC,211,28,41,8
+    COMBOBOX        IDC_COMBO_CANIND,253,26,33,121,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Initialization parameters",IDC_STATIC,16,42,320,54
+    LTEXT           "AccCode: 0x",IDC_STATIC,26,57,40,8
+    EDITTEXT        IDC_EDIT_CODE,67,55,40,12,ES_AUTOHSCROLL
+    LTEXT           "MaskCode: 0x",IDC_STATIC,121,57,41,8
+    EDITTEXT        IDC_EDIT_MASK,161,55,42,12,ES_AUTOHSCROLL
+    LTEXT           "BTR0: 0x",IDC_STATIC,26,80,45,8
+    EDITTEXT        IDC_EDIT_TIMING0,67,78,40,12,ES_AUTOHSCROLL
+    LTEXT           "BTR1: 0x",IDC_STATIC,121,79,45,8
+    EDITTEXT        IDC_EDIT_TIMING1,161,77,42,12,ES_AUTOHSCROLL
+    LTEXT           "Filter:",IDC_STATIC,213,59,31,8
+    COMBOBOX        IDC_COMBO_FILTERTYPE,252,55,50,44,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mode:",IDC_STATIC,221,80,22,8
+    COMBOBOX        IDC_COMBO_MODE,252,76,50,46,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Type:",IDC_STATIC,28,27,37,8
+    COMBOBOX        IDC_COMBO_DEV_TYPE,63,26,60,121,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "数据解析",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,360,88,48,10
+END
+
+IDD_INFO_DIALOG DIALOGEX 0, 0, 280, 291
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "USBCAN 数据解析"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "车辆信息",IDC_STATIC,7,8,266,40
+    LTEXT           "VIN:",IDC_STATIC,18,18,16,8
+    LTEXT           "ICCID:",IDC_STATIC,18,35,23,8
+    LTEXT           "数据加密方式:",IDC_STATIC,93,18,47,8
+    LTEXT           "储能子系统数:",IDC_STATIC,93,35,47,8
+    LTEXT           "登陆流水号:",IDC_STATIC,190,18,39,8
+    LTEXT           "登出流水号:",IDC_STATIC,190,35,39,8
+    GROUPBOX        "报警状态",IDC_STATIC,6,192,266,24
+    LTEXT           "报警等级:",IDC_STATIC,17,203,32,8
+    LTEXT           "报警标志:",IDC_STATIC,144,203,32,8
+    PUSHBUTTON      "数据解析",IDC_BUTTON_PARSE,214,270,50,14
+    CONTROL         "手动数据解析",IDC_CHECK_PARSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,274,59,10
+    EDITTEXT        IDC_EDIT_PARSE,7,223,266,45,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_VIN,44,15,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ICCID,44,32,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ENCRYPTION,140,15,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SUBSYSTEM_NUM,140,32,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LOGIN_ID,228,15,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LOGOUT_ID,228,32,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_WARN_LEVEL,50,200,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_WARN_FLAG,185,200,74,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_TAB_MONITOR,"SysTabControl32",0x0,8,65,265,120
+    GROUPBOX        "车辆监控--实时数据",IDC_STATIC,7,54,266,132
+END
+
+IDD_TAB_CAR_DIALOG DIALOGEX 0, 0, 259, 117
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "车辆状态:",IDC_STATIC,11,11,32,8
+    LTEXT           "充电状态:",IDC_STATIC,11,24,32,8
+    LTEXT           "驱动状态:",IDC_STATIC,11,52,32,8
+    LTEXT           "制动状态:",IDC_STATIC,11,65,32,8
+    LTEXT           "加速踏板行程:",IDC_STATIC,11,97,46,8
+    LTEXT           "运行模式:",IDC_STATIC,97,11,32,8
+    LTEXT           "车辆速度:",IDC_STATIC,97,24,32,8
+    LTEXT           "挡位:",IDC_STATIC,97,52,18,8
+    LTEXT           "SOC:",IDC_STATIC,97,65,17,8
+    LTEXT           "绝缘电阻:",IDC_STATIC,178,11,32,8
+    LTEXT           "累计里程:",IDC_STATIC,178,24,32,8
+    LTEXT           "总电压:",IDC_STATIC,178,52,25,8
+    LTEXT           "总电流:",IDC_STATIC,178,65,25,8
+    EDITTEXT        IDC_EDIT1,43,8,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,43,23,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,43,50,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,43,65,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,57,95,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,128,8,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,210,8,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,128,23,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,210,23,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,128,50,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT11,128,65,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT12,210,50,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT13,210,65,40,14,ES_AUTOHSCROLL
+    LTEXT           "制动踏板行程:",IDC_STATIC,97,97,46,8
+    EDITTEXT        IDC_EDIT14,143,95,34,14,ES_AUTOHSCROLL
+    LTEXT           "DCDC状态:",IDC_STATIC,179,97,37,8
+    EDITTEXT        IDC_EDIT15,215,95,34,14,ES_AUTOHSCROLL
+END
+
+IDD_TAB_DRIVER_DIALOG DIALOGEX 0, 0, 258, 119
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "驱动电机个数:",IDC_STATIC,17,10,46,8
+    LTEXT           "驱动电机序号:",IDC_STATIC,17,25,46,8
+    LTEXT           "驱动电机转速:",IDC_STATIC,17,42,46,8
+    LTEXT           "驱动电机状态:",IDC_STATIC,133,10,46,8
+    LTEXT           "驱动电机温度:",IDC_STATIC,133,25,46,8
+    LTEXT           "驱动电机转矩:",IDC_STATIC,133,42,46,8
+    LTEXT           "驱动电机控制器温度:",IDC_STATIC,17,67,68,8
+    LTEXT           "驱动电机控制器输入电压:",IDC_STATIC,17,83,82,8
+    LTEXT           "电机控制器直流母线电流:",IDC_STATIC,17,98,82,8
+    EDITTEXT        IDC_EDIT1,66,9,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,66,25,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,66,41,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,182,9,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,182,25,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,182,41,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,114,65,84,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,114,81,84,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,114,97,84,14,ES_AUTOHSCROLL
+END
+
+IDD_TAB_POSITION_DIALOG DIALOGEX 0, 0, 265, 118
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "定位状态:",IDC_STATIC,18,15,32,8
+    LTEXT           "经度:",IDC_STATIC,18,35,18,8
+    LTEXT           "纬度:",IDC_STATIC,108,35,18,8
+    EDITTEXT        IDC_EDIT2,53,14,59,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,40,33,45,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT14,133,33,45,14,ES_AUTOHSCROLL
+END
+
+IDD_TAB_EXTREMUM_DIALOG DIALOGEX 0, 0, 265, 118
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "最高电压电池子系统号:",IDC_STATIC,8,10,75,8
+    LTEXT           "最低电压电池子系统号:",IDC_STATIC,136,10,75,8
+    EDITTEXT        IDC_EDIT1,84,9,47,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,211,9,47,14,ES_AUTOHSCROLL
+    LTEXT           "最高电压电池单体代号:",IDC_STATIC,8,26,75,8
+    EDITTEXT        IDC_EDIT4,84,24,47,14,ES_AUTOHSCROLL
+    LTEXT           "最低电压电池单体代号:",IDC_STATIC,136,26,75,8
+    EDITTEXT        IDC_EDIT5,211,24,47,14,ES_AUTOHSCROLL
+    LTEXT           "电池单体电压最高值:",IDC_STATIC,8,42,68,8
+    EDITTEXT        IDC_EDIT6,84,39,47,14,ES_AUTOHSCROLL
+    LTEXT           "电池单体电压最低值:",IDC_STATIC,136,42,68,8
+    EDITTEXT        IDC_EDIT7,211,39,47,14,ES_AUTOHSCROLL
+    LTEXT           "最高温度电池子系统号:",IDC_STATIC,9,70,75,8
+    EDITTEXT        IDC_EDIT8,84,67,47,14,ES_AUTOHSCROLL
+    LTEXT           "最低温度电池子系统号:",IDC_STATIC,136,70,75,8
+    EDITTEXT        IDC_EDIT9,211,67,47,14,ES_AUTOHSCROLL
+    LTEXT           "最高温度电池单体代号:",IDC_STATIC,9,85,75,8
+    EDITTEXT        IDC_EDIT10,84,82,47,14,ES_AUTOHSCROLL
+    LTEXT           "最低温度电池单体代号:",IDC_STATIC,136,85,75,8
+    EDITTEXT        IDC_EDIT11,211,82,47,14,ES_AUTOHSCROLL
+    LTEXT           "电池单体温度最高值:",IDC_STATIC,9,99,68,8
+    EDITTEXT        IDC_EDIT12,84,97,47,14,ES_AUTOHSCROLL
+    LTEXT           "电池单体温度最低值:",IDC_STATIC,136,99,68,8
+    EDITTEXT        IDC_EDIT13,211,97,47,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "FileDescription", "test Microsoft MFC application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "test"
+            VALUE "LegalCopyright", "Copyright (C) 2003"
+            VALUE "OriginalFilename", "test.EXE"
+            VALUE "ProductName", "test"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_TEST_DIALOG, DIALOG
+    BEGIN
+    END
+
+    IDD_INFO_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 273
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 284
+    END
+
+    IDD_TAB_CAR_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 110
+    END
+
+    IDD_TAB_DRIVER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_TAB_POSITION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 111
+    END
+
+    IDD_TAB_EXTREMUM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 111
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_TEST232CAN_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_CANBAUD, 0x403, 7, 0
+0x3031, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_CANBAUD, 0x403, 7, 0
+0x3032, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_CANBAUD, 0x403, 7, 0
+0x3035, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_CANBAUD, 0x403, 8, 0
+0x3231, 0x4b35, 0x7062, 0x0073, 
+    IDC_COMBO_CANBAUD, 0x403, 8, 0
+0x3532, 0x4b30, 0x7062, 0x0073, 
+    IDC_COMBO_CANBAUD, 0x403, 8, 0
+0x3035, 0x4b30, 0x7062, 0x0073, 
+    IDC_COMBO_CANBAUD, 0x403, 8, 0
+0x3038, 0x4b30, 0x7062, 0x0073, 
+    IDC_COMBO_CANBAUD, 0x403, 9, 0
+0x3031, 0x3030, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_232BAUD, 0x403, 8, 0
+0x2e32, 0x4b34, 0x7062, 0x0073, 
+    IDC_COMBO_232BAUD, 0x403, 8, 0
+0x2e34, 0x4b38, 0x7062, 0x0073, 
+    IDC_COMBO_232BAUD, 0x403, 8, 0
+0x2e39, 0x4b36, 0x7062, 0x0073, 
+    IDC_COMBO_232BAUD, 0x403, 9, 0
+0x3431, 0x342e, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_232BAUD, 0x403, 9, 0
+0x3931, 0x322e, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_232BAUD, 0x403, 9, 0
+0x3832, 0x382e, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_232BAUD, 0x403, 9, 0
+0x3735, 0x362e, 0x624b, 0x7370, "\000" 
+    IDC_COMBO_232BAUD, 0x403, 10, 0
+0x3131, 0x2e35, 0x4b32, 0x7062, 0x0073, 
+    IDC_COMBO_SENDTYPE, 0x403, 9, 0
+0xfdd5, 0xa3b3, 0xa2b7, 0xcdcb, "\000" 
+    IDC_COMBO_SENDTYPE, 0x403, 9, 0
+0xa5b5, 0xceb4, 0xa2b7, 0xcdcb, "\000" 
+    IDC_COMBO_SENDTYPE, 0x403, 9, 0
+0xd4d7, 0xa2b7, 0xd4d7, 0xd5ca, "\000" 
+    IDC_COMBO_SENDTYPE, 0x403, 13, 0
+0xa5b5, 0xceb4, 0xd4d7, 0xa2b7, 0xd4d7, 0xd5ca, "\000" 
+    IDC_COMBO_SENDFRAMETYPE, 0x403, 7, 0
+0xeab1, 0xbcd7, 0xa1d6, "\000" 
+    IDC_COMBO_SENDFRAMETYPE, 0x403, 7, 0
+0xa9c0, 0xb9d5, 0xa1d6, "\000" 
+    IDC_COMBO_SENDFRAMEFORMAT, 0x403, 7, 0
+0xfdca, 0xddbe, 0xa1d6, "\000" 
+    IDC_COMBO_SENDFRAMEFORMAT, 0x403, 7, 0
+0xb6d4, 0xccb3, 0xa1d6, "\000" 
+    0
+END
+
+IDD_TEST_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_SENDTYPE, 0x403, 12, 0
+0x6f4e, 0x6d72, 0x6c61, 0x5320, 0x6e65, 0x0064, 
+    IDC_COMBO_SENDTYPE, 0x403, 12, 0
+0x6953, 0x676e, 0x656c, 0x5320, 0x6e65, 0x0064, 
+    IDC_COMBO_SENDTYPE, 0x403, 15, 0
+0x6553, 0x646e, 0x2620, 0x5220, 0x6365, 0x6965, 0x6576, "\000" 
+    IDC_COMBO_SENDTYPE, 0x403, 18, 0
+0x6953, 0x676e, 0x656c, 0x5320, 0x6e65, 0x2064, 0x2026, 0x6552, 0x0063, 
+
+    IDC_COMBO_SENDFRAMETYPE, 0x403, 9, 0
+0x7453, 0x6e61, 0x6164, 0x6472, "\000" 
+    IDC_COMBO_SENDFRAMETYPE, 0x403, 9, 0
+0x7845, 0x6574, 0x646e, 0x6465, "\000" 
+    IDC_COMBO_SENDFRAMEFORMAT, 0x403, 11, 0
+0x6144, 0x6174, 0x4620, 0x6172, 0x656d, "\000" 
+    IDC_COMBO_SENDFRAMEFORMAT, 0x403, 13, 0
+0x6552, 0x6f6d, 0x6574, 0x4620, 0x6172, 0x656d, "\000" 
+    IDC_COMBO_FILTERTYPE, 0x403, 11, 0
+0x7544, 0x6c61, 0x6946, 0x746c, 0x7265, "\000" 
+    IDC_COMBO_FILTERTYPE, 0x403, 13, 0
+0x6953, 0x676e, 0x656c, 0x6946, 0x746c, 0x7265, "\000" 
+    IDC_COMBO_MODE, 0x403, 7, 0
+0x6f4e, 0x6d72, 0x6c61, "\000" 
+    IDC_COMBO_MODE, 0x403, 9, 0
+0x6552, 0x6461, 0x6e6f, 0x796c, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU
+BEGIN
+    POPUP "popmenu"
+    BEGIN
+        MENUITEM "刷新",                          ID_MENU_REFRESH
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_TEST_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_INFO_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TAB_CAR_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TAB_DRIVER_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TAB_POSITION_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TAB_EXTREMUM_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "About test(&A)..."
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\test.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
