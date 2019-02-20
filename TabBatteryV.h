@@ -1,6 +1,7 @@
 #pragma once
 #include "ControlCAN.h"
 
+#define V_ARRAY_LEN 180
 
 // TabBatteryV ¶Ô»°¿ò
 
@@ -26,4 +27,7 @@ public:
 	int ParseFrame(VCI_CAN_OBJ frame);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+
+	double m_x[V_ARRAY_LEN];
+	double m_y[V_ARRAY_LEN];
 };

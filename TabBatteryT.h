@@ -6,6 +6,8 @@
 #include ".\ChartCtrl_source\ChartBarSerie.h"
 #include ".\ChartCtrl_source\ChartLineSerie.h"
 
+#define T_ARRAY_LEN 72
+
 // TabBatteryT ¶Ô»°¿ò
 
 class TabBatteryT : public CDialogEx
@@ -32,4 +34,7 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+
+	double m_x[T_ARRAY_LEN];
+	double m_y[T_ARRAY_LEN];
 };

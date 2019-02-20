@@ -36,6 +36,27 @@ END_MESSAGE_MAP()
 
 
 int TabBatteryT::ParseFrame(VCI_CAN_OBJ frame) {
+	BYTE *data = frame.Data;
+	UINT l_id = frame.ID >> 16;
+	UINT h_id = (frame.ID & 0xffff0000) >> 16;
+	UINT start_index = 0x18407A70 >> 16;
+	UINT end_index = 0x18487A70 >> 16;
+	int index = 0;
+	int i = 0;
+
+	if (h_id <start_index || h_id > end_index || l_id != 0x7A70) {
+		return 0;
+	}
+
+	index = h_id - start_index;
+
+	/*
+	温度报文特点
+	每8bite 表示一个温度值，精度1 偏移量-40
+	*/
+	for (i = 0; i < 8; i++) {
+		m_y[index + i] = data[i] - 40;
+	}
 
 	return 0;
 }
@@ -49,6 +70,14 @@ BOOL TabBatteryT::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	int i = 0;
+
+	for (i = 0; i < T_ARRAY_LEN; i++) {
+		m_x[i] = i;
+		m_y[i] = 0;
+	}
+
+
 	m_chart.EnableScrollBar(true);
 
 	CChartStandardAxis *pBottomAxis = m_chart.CreateStandardAxis(CChartCtrl::BottomAxis);
