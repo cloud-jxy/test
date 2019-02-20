@@ -747,11 +747,5 @@ void CTestDlg::OnBnClickedCheck1()
 
 void CTestDlg::ParseFrame(VCI_CAN_OBJ frame)
 {
-	int ID = frame.ID;
-	
-	if (ID == 0x18027A70) {	//³µÁ¾×´Ì¬
-	
-	}
-	else if (ID == 0x18047A70) {
-	}
+	m_info_dialog->ParseFrame(frame);
 }

@@ -57,7 +57,7 @@ END_MESSAGE_MAP()
 
 
 int TabExtremumDialog::ParseFrame(VCI_CAN_OBJ frame) {
-	int ID = frame.ID;
+	UINT ID = frame.ID;
 	BYTE *data = frame.Data;
 	
 	if (ID == 0x18287A70) {

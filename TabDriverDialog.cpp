@@ -50,7 +50,7 @@ END_MESSAGE_MAP()
 
 
 int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
-	int ID = frame.ID;
+	UINT ID = frame.ID;
 	BYTE *data = frame.Data;
 
 	if (ID == 0x180A7A70) {
@@ -60,7 +60,7 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		0：standby；1 电动状态 2 发电状态 3 保留值
 		*/
 
-		int val = (data[1] >> 1) & 0x03;
+		int val = (data[0] >> 1) & 0x03;
 		CString str_val[] = { _T("待命"), _T("电动"), _T("发电"), _T("保留值") };
 
 		m_str_machine_status = str_val[val];
@@ -76,7 +76,7 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		驱动电机转矩
 		4 0 16 1 -32000
 		*/
-		val = (data[4] + data[5]) - 32000;
+		val = (data[4] + data[5] << 8) - 32000;
 		m_str_machine_torque.Format(_T("%d"), val);
 	}
 	else if (ID == 0x180D7A70) {
@@ -92,7 +92,7 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		驱动电机温度
 		2 0 8 1 -40
 		*/
-		int val = data[1] - 40;
+		int val = data[2] - 40;
 		m_str_machine_t.Format(_T("%d"), val);
 	}
 	else if (ID == 0x180B7A70) {
@@ -107,7 +107,7 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		电机控制器直流母线电流
 		2 0 16 0.05 -1600
 		*/
-		float val = (data[0] + data[1] << 8) * 0.05 - 1600;
+		val = (data[2] + data[3] << 8) * 0.05 - 1600;
 		m_str_controner_i.Format(_T("%.2f"), val);
 	}
 	

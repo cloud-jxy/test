@@ -54,7 +54,7 @@ END_MESSAGE_MAP()
 
 
 int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
-	int ID = frame.ID;
+	UINT ID = frame.ID;
 	BYTE *data = frame.Data;
 	if (ID == 0x18027A70) {
 		/*
@@ -152,7 +152,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		val = data[1];
 		m_str_soc.Format("%d", val);
 	}
-	else if (ID = 0x18067A70) {
+	else if (ID == 0x18067A70) {
 		/*
 		×ÜµçÁ÷
 		0 0 16 1 -500
