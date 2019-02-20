@@ -26,7 +26,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v140</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -108,7 +108,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>.\Debug/test.pch</PrecompiledHeaderOutputFile>
@@ -137,6 +137,29 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChartCtrl_source\ChartAxis.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartAxisLabel.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartBarSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartCandlestickSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartCrossHairCursor.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartCtrl.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartCursor.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartDateTimeAxis.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartDragLineCursor.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartFont.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartGanttSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartGradient.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartGrid.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartLegend.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartLineSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartLogarithmicAxis.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartPointsSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartScrollBar.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartStandardAxis.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartSurfaceSerie.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartTitle.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartXYSerie.cpp" />
     <ClCompile Include="InfoDialog.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -157,6 +180,37 @@
     <ResourceCompile Include="test.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChartCtrl_source\ChartAxis.h" />
+    <ClInclude Include="ChartCtrl_source\ChartAxisLabel.h" />
+    <ClInclude Include="ChartCtrl_source\ChartBalloonLabel.h" />
+    <ClInclude Include="ChartCtrl_source\ChartBarSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartCandlestickSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartCrossHairCursor.h" />
+    <ClInclude Include="ChartCtrl_source\ChartCtrl.h" />
+    <ClInclude Include="ChartCtrl_source\ChartCursor.h" />
+    <ClInclude Include="ChartCtrl_source\ChartDateTimeAxis.h" />
+    <ClInclude Include="ChartCtrl_source\ChartDragLineCursor.h" />
+    <ClInclude Include="ChartCtrl_source\ChartFont.h" />
+    <ClInclude Include="ChartCtrl_source\ChartGanttSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartGradient.h" />
+    <ClInclude Include="ChartCtrl_source\ChartGrid.h" />
+    <ClInclude Include="ChartCtrl_source\ChartLabel.h" />
+    <ClInclude Include="ChartCtrl_source\ChartLegend.h" />
+    <ClInclude Include="ChartCtrl_source\ChartLineSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartLogarithmicAxis.h" />
+    <ClInclude Include="ChartCtrl_source\ChartMouseListener.h" />
+    <ClInclude Include="ChartCtrl_source\ChartPointsArray.h" />
+    <ClInclude Include="ChartCtrl_source\ChartPointsSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartScrollBar.h" />
+    <ClInclude Include="ChartCtrl_source\ChartSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartSerieBase.h" />
+    <ClInclude Include="ChartCtrl_source\ChartSeriesMouseListener.h" />
+    <ClInclude Include="ChartCtrl_source\ChartStandardAxis.h" />
+    <ClInclude Include="ChartCtrl_source\ChartString.h" />
+    <ClInclude Include="ChartCtrl_source\ChartSurfaceSerie.h" />
+    <ClInclude Include="ChartCtrl_source\ChartTitle.h" />
+    <ClInclude Include="ChartCtrl_source\ChartXYSerie.h" />
+    <ClInclude Include="ChartCtrl_source\PointsOrdering.h" />
     <ClInclude Include="ControlCAN.h" />
     <ClInclude Include="InfoDialog.h" />
     <ClInclude Include="Resource.h" />
@@ -176,6 +230,11 @@
     <Image Include="res\test.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ChartCtrl_source\ChartBalloonLabel.inl" />
+    <None Include="ChartCtrl_source\ChartLabel.inl" />
+    <None Include="ChartCtrl_source\ChartPointsArray.inl" />
+    <None Include="ChartCtrl_source\ChartSerieBase.inl" />
+    <None Include="ClassDiagram.cd" />
     <None Include="res\test.rc2" />
   </ItemGroup>
   <ItemGroup>

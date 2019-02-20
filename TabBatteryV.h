@@ -1,4 +1,5 @@
 #pragma once
+#include "ControlCAN.h"
 
 
 // TabBatteryV 对话框
@@ -20,4 +21,9 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+
+public:
+	int ParseFrame(VCI_CAN_OBJ frame);
+	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 };
