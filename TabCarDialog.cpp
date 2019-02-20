@@ -190,6 +190,8 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		}
 	}
 
+	UpdateData(false);
+
 	return 0;
 }
 
