@@ -88,7 +88,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		1 2 2 0 0
 		0 off;1 on
 		*/
-		val = data[1] & 0x0c;
+		val = (data[1] >> 2) & 0x0c;
 		m_str_journy_barke.Format("%d", val);
 	}
 	else if (ID == 0x18047A70) {
@@ -166,7 +166,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		1 2 2 0 0
 		0 standby,1 work, 2 failure 3 reserved
 		*/
-		BYTE val = data[1] & 0x0c;
+		BYTE val = (data[1] >> 2) & 0x0c;
 		CString str_val[] = { _T("´ıÃü"), _T("¹¤×÷"), _T("Ê§°Ü"), _T("±£Áô")};
 		m_str_dcdc_status = str_val[val];
 	}
