@@ -31,4 +31,9 @@ BEGIN_MESSAGE_MAP(TabPositionDialog, CDialogEx)
 END_MESSAGE_MAP()
 
 
+int TabPositionDialog::ParseFrame(VCI_CAN_OBJ frame) {
+	return 0;
+}
+
+
 // TabPositionDialog 消息处理程序

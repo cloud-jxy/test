@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ControlCAN.h"
 
 // TabPositionDialog 对话框
 
@@ -20,4 +20,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+
+public:
+	int ParseFrame(VCI_CAN_OBJ frame);
 };
