@@ -55,29 +55,30 @@
 #define IDC_EDIT_WRITEREGISTER          1022
 #define IDC_TAB_MONITOR                 1022
 #define IDC_BUTTON_WRITEREGISTER        1023
-#define IDC_EDIT1                       1023
+#define IDC_EDIT_H_V_BATTERY_SUBSYS_ID  1023
 #define IDC_EDIT_SENDFRAMEID            1024
-#define IDC_EDIT2                       1024
+#define IDC_EDIT_STATUS                 1024
 #define IDC_BUTTON_SEND                 1025
-#define IDC_EDIT3                       1025
+#define IDC_EDIT_LOGITUDE               1025
+#define IDC_EDIT_LONGITUDE              1025
 #define IDC_COMBO_SENDTYPE              1026
-#define IDC_EDIT4                       1026
+#define IDC_EDIT_H_V_BATTERY_ID         1026
 #define IDC_COMBO_SENDFRAMETYPE         1027
-#define IDC_EDIT5                       1027
+#define IDC_EDIT_L_V_BATTERY_ID         1027
 #define IDC_COMBO_SENDFRAMEFORMAT       1028
-#define IDC_EDIT6                       1028
+#define IDC_EDIT_BATTERY_V_H            1028
 #define IDC_EDIT_SENDDATA               1029
-#define IDC_EDIT7                       1029
+#define IDC_EDIT_BATTERY_V_L            1029
 #define IDC_EDIT_RESENDTIMES            1030
-#define IDC_EDIT8                       1030
+#define IDC_EDIT_H_T_BATTERY_SUBSYS_ID  1030
 #define IDC_EDIT_SENDDELAYTIME          1031
-#define IDC_EDIT9                       1031
+#define IDC_EDIT_L_T_BATTERY_SUBSYS_ID  1031
 #define IDC_EDIT_READREGISTER           1032
-#define IDC_EDIT10                      1032
-#define IDC_EDIT11                      1033
-#define IDC_EDIT12                      1034
-#define IDC_EDIT13                      1035
-#define IDC_EDIT14                      1036
+#define IDC_EDIT_H_T_BATTERY_ID         1032
+#define IDC_EDIT_L_T_BATTERY_ID         1033
+#define IDC_EDIT_BATTERY_T_H            1034
+#define IDC_EDIT_BATTERY_T_L            1035
+#define IDC_EDIT_LATITUDE               1036
 #define IDC_EDIT_READGROUP              1037
 #define IDC_EDIT1_DCDC_STATUS           1037
 #define IDC_EDIT_REGISTERVAL            1038
@@ -96,7 +97,6 @@
 #define IDC_EDIT1_TOTAL_I               1049
 #define IDC_EDIT_JOURNEY_SPEEDUP        1050
 #define IDC_EDIT1_JOURNEY_BRAKE         1051
-#define IDC_EDIT_                       1052
 #define IDC_EDIT_MACHINE_NUM            1052
 #define IDC_EDIT_MACHINE_ID             1053
 #define IDC_EDIT_MACHINE_REV            1054
@@ -106,6 +106,7 @@
 #define IDC_EDIT_CONTRONER_T            1058
 #define IDC_EDIT_CONTRONER_V            1059
 #define IDC_EDIT_CONTRONER_I            1060
+#define IDC_EDIT_L_V_BATTERY_SUBSYS_ID  1061
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -120,7 +121,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1061
+#define _APS_NEXT_CONTROL_VALUE         1062
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

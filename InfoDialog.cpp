@@ -123,3 +123,14 @@ void CInfoDialog::OnClose()
 	m_p_parent_dlg->SendMessage(WM_INFO_DIALOG_CLOSE, 0, 0);
 	CDialogEx::OnClose();
 }
+
+
+int CInfoDialog::ParseFrame(VCI_CAN_OBJ frame)
+{
+	m_dlg_car.ParseFrame(frame);
+	m_dlg_driver.ParseFrame(frame);
+	m_dlg_position.ParseFrame(frame);
+	m_dlg_extremum.ParseFrame(frame);
+
+	return 0;
+}

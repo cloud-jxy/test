@@ -53,4 +53,8 @@ BEGIN_MESSAGE_MAP(TabCarDialog, CDialogEx)
 END_MESSAGE_MAP()
 
 
+int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
+	return 0;
+}
+
 // TabCarDialog 消息处理程序

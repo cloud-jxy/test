@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ControlCAN.h"
 
 // TabDriverDialog ¶Ô»°¿ò
 
@@ -30,4 +30,6 @@ public:
 	CString m_str_controner_t;
 	CString m_str_controner_v;
 	CString m_str_controner_i;
+
+	int ParseFrame(VCI_CAN_OBJ frame);
 };

@@ -12,6 +12,7 @@
 // CTestDlg dialog
 #include "TestListBox.h"
 #include "afxwin.h"
+#include "ControlCAN.h"
 
 class CInfoDialog;
 
@@ -81,6 +82,8 @@ public:
 	afx_msg void OnBnClickedCheck1();
 	CButton m_cbx_parse;
 	CInfoDialog *m_info_dialog;
+
+	void ParseFrame(VCI_CAN_OBJ frame);
 };
 
 //{{AFX_INSERT_LOCATION}}

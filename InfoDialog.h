@@ -7,6 +7,7 @@
 #include "TabExtremumDialog.h"
 #include "TabBatteryV.h"
 #include "TabBatteryT.h"
+#include "ControlCAN.h"
 
 
 //class TabCarDialog;
@@ -54,4 +55,5 @@ public:
 	afx_msg void OnTcnSelchangeTabMonitor(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnBnClickedButtonParse();
 	afx_msg void OnClose();
+	int ParseFrame(VCI_CAN_OBJ frame);
 };

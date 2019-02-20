@@ -1,6 +1,6 @@
 #pragma once
 #include "afxwin.h"
-
+#include "ControlCAN.h"
 
 // TabCarDialog ¶Ô»°¿ò
 
@@ -37,4 +37,6 @@ public:
 	CString m_str_journey_speedup;
 	CString m_str_journy_barke;
 	CString m_str_dcdc_status;
+
+	int ParseFrame(VCI_CAN_OBJ frame);
 };

@@ -4,9 +4,9 @@
 #include "stdafx.h"
 #include "test.h"
 #include "testDlg.h"
-#include "ControlCAN.h"
 #include "uTimeCounter.h"
 #include "InfoDialog.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -646,6 +646,9 @@ UINT CTestDlg::ReceiveThread(void *param)
 		{
 			for(i=0;i<len;i++)
 			{
+				VCI_CAN_OBJ frame = frameinfo[i];
+				((CTestDlg*)(dlg))->ParseFrame(frame);
+
 				str="Receiving data frame:  ";
 				if(frameinfo[i].TimeFlag==0)
 					tmpstr="Time stamps:null  ";
@@ -738,5 +741,17 @@ void CTestDlg::OnBnClickedCheck1()
 	}
 	else {
 		m_info_dialog->ShowWindow(SW_SHOW);
+	}
+}
+
+
+void CTestDlg::ParseFrame(VCI_CAN_OBJ frame)
+{
+	int ID = frame.ID;
+	
+	if (ID == 0x18027A70) {	//³µÁ¾×´Ì¬
+	
+	}
+	else if (ID == 0x18047A70) {
 	}
 }
