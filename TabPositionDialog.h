@@ -23,4 +23,7 @@ protected:
 
 public:
 	int ParseFrame(VCI_CAN_OBJ frame);
+	CString m_str_status;
+	CString m_str_longitude;
+	CString m_str_latitude;
 };

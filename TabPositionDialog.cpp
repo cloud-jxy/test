@@ -13,6 +13,9 @@ IMPLEMENT_DYNAMIC(TabPositionDialog, CDialogEx)
 
 TabPositionDialog::TabPositionDialog(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_TAB_POSITION_DIALOG, pParent)
+	, m_str_status(_T(""))
+	, m_str_longitude(_T(""))
+	, m_str_latitude(_T(""))
 {
 
 }
@@ -24,6 +27,9 @@ TabPositionDialog::~TabPositionDialog()
 void TabPositionDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT_STATUS, m_str_status);
+	DDX_Text(pDX, IDC_EDIT_LONGITUDE, m_str_longitude);
+	DDX_Text(pDX, IDC_EDIT_LATITUDE, m_str_latitude);
 }
 
 
