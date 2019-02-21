@@ -86,13 +86,12 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		*/
 		int val = data[1] - 40;
 		m_str_controner_t.Format(_T("%d"), val);
-	}
-	else if (ID == 0x180D7A70) {
+
 		/*
 		驱动电机温度
 		2 0 8 1 -40
 		*/
-		int val = data[2] - 40;
+		val = data[2] - 40;
 		m_str_machine_t.Format(_T("%d"), val);
 	}
 	else if (ID == 0x180B7A70) {
