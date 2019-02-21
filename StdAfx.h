@@ -28,3 +28,4 @@
 #include <afxcontrolbars.h>
 
 #define WM_INFO_DIALOG_CLOSE (WM_USER + 8)
+#define WM_MY_PARSE_FRAME (WM_USER + 9)

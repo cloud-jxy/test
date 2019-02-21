@@ -8,6 +8,8 @@
 #include "InfoDialog.h"
 
 
+FILE *f = fopen("1.log", "w");
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -122,6 +124,7 @@ BEGIN_MESSAGE_MAP(CTestDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK1, &CTestDlg::OnBnClickedCheck1)
 
 	ON_MESSAGE(WM_INFO_DIALOG_CLOSE, &CTestDlg::OnInfoDialogClose)
+	ON_MESSAGE(WM_MY_PARSE_FRAME, &CTestDlg::OnParseFrame)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -130,6 +133,12 @@ END_MESSAGE_MAP()
 LRESULT CTestDlg::OnInfoDialogClose(WPARAM w, LPARAM l) {
 	m_cbx_parse.SetCheck(false);
 	UpdateData(false);
+	return 0;
+}
+
+LRESULT CTestDlg::OnParseFrame(WPARAM w, LPARAM l) {
+	VCI_CAN_OBJ *frame = (VCI_CAN_OBJ *)l;
+	ParseFrame(*frame);
 	return 0;
 }
 
@@ -477,6 +486,12 @@ void CTestDlg::OnButtonResetcan()
 
 void CTestDlg::OnButtonSend() 
 {
+	//VCI_CAN_OBJ frame;
+	//frame.ID = 0x18067a70;
+	//frame.Data[0] = 0xf4;
+	//frame.Data[1] = 0x01;
+	//SendMessage(WM_MY_PARSE_FRAME, 0, (LPARAM)&frame);
+
 	// TODO: Add your control notification handler code here
 	if(m_connect==0)
 		return;
@@ -647,7 +662,18 @@ UINT CTestDlg::ReceiveThread(void *param)
 			for(i=0;i<len;i++)
 			{
 				VCI_CAN_OBJ frame = frameinfo[i];
-				((CTestDlg*)(dlg))->ParseFrame(frame);
+				//((CTestDlg*)(dlg))->ParseFrame(frame);
+				/*
+				必须使用SendMessage，因为它是同步的
+				之前，如上非Dialog进程UpdateData刷新界面时，Debug Assert Error。
+				*/
+				dlg->SendMessage(WM_MY_PARSE_FRAME, 0, (LPARAM)&frame);
+
+				char text[255] = { 0 };
+				snprintf(text, 255, "0x%x %02x %02x %02x %02x %02x %02x %02x %02x\n", frame.ID
+					, frame.Data[0], frame.Data[1], frame.Data[2], frame.Data[3]
+					, frame.Data[4], frame.Data[5], frame.Data[6], frame.Data[7]);
+				fwrite(text, strlen(text), 1, f);
 
 				str="Receiving data frame:  ";
 				if(frameinfo[i].TimeFlag==0)
@@ -683,7 +709,8 @@ UINT CTestDlg::ReceiveThread(void *param)
 					//EnterCriticalSection(&(dlg->m_Section));
 					//LeaveCriticalSection(&(dlg->m_Section));
 					box->InsertString(box->GetCount(),str);
-				}				
+				}	
+
 			}
 			box->SetCurSel(box->GetCount()-1);
 		}

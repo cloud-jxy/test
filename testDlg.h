@@ -75,6 +75,7 @@ protected:
 	afx_msg void OnSelchangeComboDevType();
 
 	afx_msg LRESULT OnInfoDialogClose(WPARAM w, LPARAM l);
+	afx_msg LRESULT OnParseFrame(WPARAM w, LPARAM l);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
