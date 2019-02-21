@@ -16,7 +16,6 @@
 #define IDD_TAB_EXTREMUM_DIALOG         136
 #define IDD_TAB_BATTERY_VOLTAGE_DIALOG  137
 #define IDD_TAB_BATTERY_T_DIALOG        138
-#define IDD_DIALOG1                     139
 #define IDD_TAB_WARN_DIALOG             139
 #define IDC_COMBO_PORT                  1001
 #define IDC_COMBO_INDEX                 1001
@@ -110,6 +109,8 @@
 #define IDC_EDIT_L_V_BATTERY_SUBSYS_ID  1061
 #define IDC_CUSTOM_T                    1062
 #define IDC_CUSTOM1                     1063
+#define IDC_LIST1                       1065
+#define IDC_LIST2                       1077
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -124,7 +125,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1064
+#define _APS_NEXT_CONTROL_VALUE         1066
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

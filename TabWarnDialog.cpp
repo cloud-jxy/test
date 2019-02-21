@@ -51,6 +51,8 @@ TabWarnDialog::~TabWarnDialog()
 void TabWarnDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_LIST1, m_ctrl_list_1);
+	DDX_Control(pDX, IDC_LIST2, m_ctrl_list_2);
 }
 
 
@@ -61,11 +63,42 @@ END_MESSAGE_MAP()
 // TabWarnDialog 消息处理程序
 
 
+void TabWarnDialog::UpdateWarns() {
+	int i = 0;
+	int len = sizeof(warns) / sizeof(warns[0]);
+	int len_1 = len / 2 + len % 2;
+
+	for (; i < len_1; i++) {
+		m_ctrl_list_1.InsertItem(i, warns[i].name);  //插入第i行，且0列为warns[i].name
+
+		CString str;
+		str.Format("%d", warns[i].level);
+		m_ctrl_list_1.SetItemText(i, 1, str);//设置第i行，第1列值
+	}
+
+	for (i = len_1; i < len; i++) {
+		m_ctrl_list_2.InsertItem(i - len_1, warns[i].name);
+
+		CString str;
+		str.Format("%d", warns[i].level);
+		m_ctrl_list_2.SetItemText(i - len_1, 1, str);//设置第i行，第1列值
+	}
+}
+
+
 BOOL TabWarnDialog::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+
+	m_ctrl_list_1.InsertColumn(0, _T("通用报警标志"), 0, 175);
+	m_ctrl_list_1.InsertColumn(1, _T("等级"), 0, 80);
+
+	m_ctrl_list_2.InsertColumn(0, _T("通用报警标志"), 0, 175);
+	m_ctrl_list_2.InsertColumn(1, _T("等级"), 0, 80);
+
+	UpdateWarns();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
@@ -83,6 +116,8 @@ int TabWarnDialog::ParseFrame(VCI_CAN_OBJ frame) {
 	for (i = 0; i < len; i++) {
 		warns[i].level = (data[warns[i].byte_pos] >> warns[i].bite_pos) & 0x03;
 	}
+
+	UpdateWarns();
 
 	return 0;
 }

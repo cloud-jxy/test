@@ -1,5 +1,6 @@
 #pragma once
 #include "ControlCAN.h"
+#include "afxcmn.h"
 
 
 struct WarnInfo {
@@ -32,4 +33,8 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	int ParseFrame(VCI_CAN_OBJ frame);
+	CListCtrl m_ctrl_list_1;
+	CListCtrl m_ctrl_list_2;
+
+	void UpdateWarns();
 };

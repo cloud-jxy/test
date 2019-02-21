@@ -62,6 +62,7 @@ void CInfoDialog::InitControlContainer() {
 	m_tab_monitor.InsertItem(3, "极性数值");
 	m_tab_monitor.InsertItem(4, "电池电压");
 	m_tab_monitor.InsertItem(5, "电池温度");
+	m_tab_monitor.InsertItem(6, "报警状态");
 
 	m_dlg_car.Create(IDD_TAB_CAR_DIALOG, &m_tab_monitor);
 	m_dlg_driver.Create(IDD_TAB_DRIVER_DIALOG, &m_tab_monitor);
@@ -103,7 +104,7 @@ void CInfoDialog::OnTcnSelchangeTabMonitor(NMHDR *pNMHDR, LRESULT *pResult)
 	// TODO: 在此添加控件通知处理程序代码
 	*pResult = 0;
 
-	CDialog *p_dialogs[] = {&m_dlg_car, &m_dlg_driver, &m_dlg_position, &m_dlg_extremum, &m_dlg_battery_v, &m_dlg_battery_t};
+	CDialog *p_dialogs[] = {&m_dlg_car, &m_dlg_driver, &m_dlg_position, &m_dlg_extremum, &m_dlg_battery_v, &m_dlg_battery_t, &m_dlg_warn};
 	int len = sizeof(p_dialogs) / sizeof(CDialog *);
 	int index = m_tab_monitor.GetCurSel();
 	int i = 0;
