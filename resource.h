@@ -16,6 +16,8 @@
 #define IDD_TAB_EXTREMUM_DIALOG         136
 #define IDD_TAB_BATTERY_VOLTAGE_DIALOG  137
 #define IDD_TAB_BATTERY_T_DIALOG        138
+#define IDD_DIALOG1                     139
+#define IDD_TAB_WARN_DIALOG             139
 #define IDC_COMBO_PORT                  1001
 #define IDC_COMBO_INDEX                 1001
 #define IDC_COMBO_BAUD                  1002
@@ -120,7 +122,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        139
+#define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1064
 #define _APS_NEXT_SYMED_VALUE           101

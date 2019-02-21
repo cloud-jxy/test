@@ -69,6 +69,7 @@ void CInfoDialog::InitControlContainer() {
 	m_dlg_extremum.Create(IDD_TAB_EXTREMUM_DIALOG, &m_tab_monitor);
 	m_dlg_battery_v.Create(IDD_TAB_BATTERY_VOLTAGE_DIALOG, &m_tab_monitor);
 	m_dlg_battery_t.Create(IDD_TAB_BATTERY_T_DIALOG, &m_tab_monitor);
+	m_dlg_warn.Create(IDD_TAB_WARN_DIALOG, &m_tab_monitor);
 
 	CRect rect;
 	m_tab_monitor.GetClientRect(&rect);
@@ -83,6 +84,7 @@ void CInfoDialog::InitControlContainer() {
 	m_dlg_extremum.MoveWindow(&rect);
 	m_dlg_battery_v.MoveWindow(&rect);
 	m_dlg_battery_t.MoveWindow(&rect);
+	m_dlg_warn.MoveWindow(&rect);
 
 	m_dlg_car.ShowWindow(SW_SHOW);
 	m_dlg_driver.ShowWindow(SW_HIDE);
@@ -90,6 +92,7 @@ void CInfoDialog::InitControlContainer() {
 	m_dlg_extremum.ShowWindow(SW_HIDE);
 	m_dlg_battery_v.ShowWindow(SW_HIDE);
 	m_dlg_battery_t.ShowWindow(SW_HIDE);
+	m_dlg_warn.ShowWindow(SW_HIDE);
 
 	m_tab_monitor.SetCurSel(0);
 }
@@ -131,6 +134,9 @@ int CInfoDialog::ParseFrame(VCI_CAN_OBJ frame)
 	m_dlg_driver.ParseFrame(frame);
 	m_dlg_position.ParseFrame(frame);
 	m_dlg_extremum.ParseFrame(frame);
+	m_dlg_battery_t.ParseFrame(frame);
+	m_dlg_battery_v.ParseFrame(frame);
+	m_dlg_warn.ParseFrame(frame);
 
 	return 0;
 }

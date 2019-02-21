@@ -171,6 +171,7 @@
     <ClCompile Include="TabDriverDialog.cpp" />
     <ClCompile Include="TabExtremumDialog.cpp" />
     <ClCompile Include="TabPositionDialog.cpp" />
+    <ClCompile Include="TabWarnDialog.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="testDlg.cpp" />
     <ClCompile Include="TestListBox.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="TabDriverDialog.h" />
     <ClInclude Include="TabExtremumDialog.h" />
     <ClInclude Include="TabPositionDialog.h" />
+    <ClInclude Include="TabWarnDialog.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="testDlg.h" />
     <ClInclude Include="TestListBox.h" />

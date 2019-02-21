@@ -274,6 +274,13 @@ BEGIN
     CONTROL         "Custom1",IDC_CUSTOM_T,"ChartCtrl",WS_CLIPCHILDREN | WS_TABSTOP,7,7,673,79
 END
 
+IDD_TAB_WARN_DIALOG DIALOGEX 0, 0, 310, 176
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "ÎÂ¶È²îÒì±¨¾¯",IDC_STATIC,31,17,53,142
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -387,6 +394,14 @@ BEGIN
         RIGHTMARGIN, 680
         TOPMARGIN, 7
         BOTTOMMARGIN, 86
+    END
+
+    IDD_TAB_WARN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 169
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -535,6 +550,11 @@ BEGIN
 END
 
 IDD_TAB_BATTERY_T_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TAB_WARN_DIALOG AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

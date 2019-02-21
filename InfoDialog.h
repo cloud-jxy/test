@@ -8,6 +8,7 @@
 #include "TabBatteryV.h"
 #include "TabBatteryT.h"
 #include "ControlCAN.h"
+#include "TabWarnDialog.h"
 
 
 //class TabCarDialog;
@@ -50,6 +51,7 @@ private:
 	TabExtremumDialog m_dlg_extremum;
 	TabBatteryV m_dlg_battery_v;
 	TabBatteryT m_dlg_battery_t;
+	TabWarnDialog m_dlg_warn;
 
 public:
 	afx_msg void OnTcnSelchangeTabMonitor(NMHDR *pNMHDR, LRESULT *pResult);

@@ -120,6 +120,9 @@
     <ClCompile Include="ChartCtrl_source\ChartXYSerie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TabWarnDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="test.rc">
@@ -260,6 +263,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ChartCtrl_source\PointsOrdering.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TabWarnDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
