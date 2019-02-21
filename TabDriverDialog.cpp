@@ -69,14 +69,14 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		驱动电机转速
 		2 0 16 0.5 0
 		*/
-		val = (data[2] + data[3] << 8) * 0.5;
+		val = (data[2] + (data[3] << 8)) * 0.5;
 		m_str_machine_rev.Format(_T("%d"), val);
 
 		/*
 		驱动电机转矩
 		4 0 16 1 -32000
 		*/
-		val = (data[4] + data[5] << 8) - 32000;
+		val = (data[4] + (data[5] << 8)) - 32000;
 		m_str_machine_torque.Format(_T("%d"), val);
 	}
 	else if (ID == 0x180D7A70) {
@@ -100,14 +100,14 @@ int TabDriverDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		电机控制器输入电压
 		0 0 16 0.05 0
 		*/
-		float val = (data[0] + data[1] << 8) * 0.05;
+		float val = (data[0] + (data[1] << 8)) * 0.05;
 		m_str_controner_v.Format(_T("%.2f"), val);
 
 		/*
 		电机控制器直流母线电流
 		2 0 16 0.05 -1600
 		*/
-		val = (data[2] + data[3] << 8) * 0.05 - 1600;
+		val = (data[2] + (data[3] << 8)) * 0.05 - 1600;
 		m_str_controner_i.Format(_T("%.2f"), val);
 	}
 	

@@ -40,7 +40,8 @@ END_MESSAGE_MAP()
 
 int TabBatteryT::ParseFrame(VCI_CAN_OBJ frame) {
 	BYTE *data = frame.Data;
-	UINT l_id = frame.ID >> 16;
+	//frame.ID = 0x18407A70;
+	UINT l_id = frame.ID & 0x0000ffff;
 	UINT h_id = (frame.ID & 0xffff0000) >> 16;
 	UINT start_index = 0x18407A70 >> 16;
 	UINT end_index = 0x18487A70 >> 16;
@@ -272,11 +273,11 @@ static DWORD WINAPI ThreadProc(LPVOID pParam) {
 
 void TabBatteryT::UpdateChart()
 {
-	int i = 0;
+	//int i = 0;
 
-	for (i = 0; i < T_ARRAY_LEN; i++) {
-		m_y[i] = (rand() % 10);
-	}
+	//for (i = 0; i < T_ARRAY_LEN; i++) {
+	//	m_y[i] = (rand() % 10);
+	//}
 
 	m_chart.EnableRefresh(false);
 

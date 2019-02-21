@@ -45,9 +45,9 @@ void TabExtremumDialog::DoDataExchange(CDataExchange* pDX)
 
 	DDX_Text(pDX, IDC_EDIT_H_T_BATTERY_SUBSYS_ID, m_h_t_battery_subsys_id);
 	DDX_Text(pDX, IDC_EDIT_H_T_BATTERY_ID, m_str_h_t_battery_id);
-	DDX_Text(pDX, IDC_EDIT_BATTERY_T_H, m_str_battery_v_h);
+	DDX_Text(pDX, IDC_EDIT_BATTERY_T_H, m_str_battery_t_h);
 	DDX_Text(pDX, IDC_EDIT_L_T_BATTERY_SUBSYS_ID, m_str_l_t_battery_subsys_id);
-	DDX_Text(pDX, IDC_EDIT_L_T_BATTERY_ID, m_str_l_v_battery_id);
+	DDX_Text(pDX, IDC_EDIT_L_T_BATTERY_ID, m_str_l_t_battery_id);
 	DDX_Text(pDX, IDC_EDIT_BATTERY_T_L, m_str_battery_t_l);
 }
 

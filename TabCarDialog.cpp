@@ -13,15 +13,22 @@ IMPLEMENT_DYNAMIC(TabCarDialog, CDialogEx)
 
 TabCarDialog::TabCarDialog(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_TAB_CAR_DIALOG, pParent)
+	, m_str_car_status(_T(""))
+	, m_str_charging_status(_T(""))
+	, m_str_driver_status(_T(""))
+	, m_str_braking_status(_T(""))
+	, m_str_run_mode(_T("纯电"))
 	, m_str_speed(_T(""))
+	, m_str_gears(_T(""))
 	, m_str_mil(_T(""))
 	, m_str_v(_T(""))
 	, m_str_i(_T(""))
+	, m_str_r(_T(""))
 	, m_str_journey_speedup(_T(""))
 	, m_str_journy_barke(_T(""))
 	, m_str_dcdc_status(_T(""))
 {
-	m_str_run_mode = _T("纯电");	//固定值：纯电
+	//m_str_run_mode = _T("纯电");	//固定值：纯电
 }
 
 TabCarDialog::~TabCarDialog()
@@ -90,6 +97,13 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		*/
 		val = (data[1] >> 2) & 0x0c;
 		m_str_journy_barke.Format("%d", val);
+
+		/*
+		制动踏板状态：=0，无制动力，>0有制动力
+		*/
+		/*val = m_
+		m_str_braking_status = (val)*/
+
 	}
 	else if (ID == 0x18047A70) {
 		/*
@@ -101,10 +115,10 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		CString str_status[] = { _T("停车充电"), _T("行驶充电"), _T("未充电状态"), _T("充电完成") };
 
 		if (status <= 3) {
-			m_str_braking_status = str_status[status];
+			m_str_charging_status = str_status[status];
 		}
 		else {
-			m_str_braking_status = _T("数据异常");
+			m_str_charging_status = _T("数据异常");
 		}
 	}
 	else if (ID == 0x18037A70) {
@@ -123,7 +137,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 			m_str_speed = _T("not availbale");
 		}
 		else {
-			double speed = (double)0.00390625 * (l + h << 8) + 0;
+			double speed = (double)0.00390625 * (l + (h << 8)) + 0;
 			m_str_speed.Format("%.3lf", speed);
 		}
 	}
@@ -134,7 +148,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		*/
 
 		// 0.1: 100m = 0.1km
-		int val = (data[0] + data[1] << 8 + data[2] << 16 + data[3] << 24 ) * 0.1 + 0;
+		int val = (data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24 )) * 0.1 + 0;
 		m_str_mil.Format("%d", val);
 	}
 	else if (ID == 0x18057A70) {
@@ -142,7 +156,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		总电压
 		2 0 16 0.1V 0
 		*/
-		int val = (data[2] + data[3] << 8) * 0.1 + 0;
+		int val = (data[2] + (data[3] << 8)) * 0.1 + 0;
 		m_str_v.Format("%d", val);
 
 		/*
@@ -157,7 +171,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		总电流
 		0 0 16 1 -500
 		*/
-		int val = (data[0] + data[1] << 8) * 1 - 500;
+		int val = (data[0] + (data[1] << 8)) * 1 - 500;
 		m_str_i.Format("%d", val);
 	}
 	else if (ID == 0x18097A70) {
@@ -177,7 +191,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		65534 表示电阻值>65533
 		65535 表述NA 无效数值
 		*/
-		int val = data[1] + data[2] << 8;
+		int val = data[1] + (data[2] << 8);
 
 		if (val == 65534) {
 			m_str_r = _T("大于65533");
