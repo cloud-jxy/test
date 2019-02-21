@@ -72,6 +72,9 @@ void CInfoDialog::InitControlContainer() {
 	m_dlg_battery_t.Create(IDD_TAB_BATTERY_T_DIALOG, &m_tab_monitor);
 	m_dlg_warn.Create(IDD_TAB_WARN_DIALOG, &m_tab_monitor);
 
+	m_dlg_extremum.m_p_parent_dlg = this;
+	m_dlg_battery_t.m_p_parent_dlg = this;
+
 	CRect rect;
 	m_tab_monitor.GetClientRect(&rect);
 	rect.top += 20;

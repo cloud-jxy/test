@@ -5,6 +5,8 @@
 #include "test.h"
 #include "TabBatteryT.h"
 #include "afxdialogex.h"
+#include "InfoDialog.h"
+
 
 static BOOL g_run;
 
@@ -47,6 +49,8 @@ int TabBatteryT::ParseFrame(VCI_CAN_OBJ frame) {
 	UINT end_index = 0x18487A70 >> 16;
 	int index = 0;
 	int i = 0;
+	TabExtremumDialog *p_dlg = &((CInfoDialog *)m_p_parent_dlg)->m_dlg_extremum;
+
 
 	if (h_id <start_index || h_id > end_index || l_id != 0x7A70) {
 		return 0;
@@ -59,7 +63,26 @@ int TabBatteryT::ParseFrame(VCI_CAN_OBJ frame) {
 	每8bite 表示一个温度值，精度1 偏移量-40
 	*/
 	for (i = 0; i < 8; i++) {
-		m_y[index + i] = data[i] - 40;
+		int x = index + i;
+		int y = data[i] - 40;
+		m_y[x] = y;
+
+		if (m_max == -1 || m_max < y) {
+			m_max = x;
+			CString str;
+			str.Format("%d", m_max);
+
+			((CEdit *)p_dlg->GetDlgItem(IDC_EDIT_H_T_BATTERY_ID))->SetWindowText(str);
+		}
+
+		if (m_min == -1 || m_min > y) {
+			m_min = x;
+
+			CString str;
+			str.Format("%d", m_min);
+
+			((CEdit *)p_dlg->GetDlgItem(IDC_EDIT_L_T_BATTERY_ID))->SetWindowText(str);
+		}
 	}
 
 	return 0;
@@ -81,6 +104,9 @@ BOOL TabBatteryT::OnInitDialog()
 		m_x[i] = i;
 		m_y[i] = 0;
 	}
+
+	m_max = -1;
+	m_min = -1;
 
 	CChartStandardAxis *pBottomAxis = m_chart.CreateStandardAxis(CChartCtrl::BottomAxis);
 	pBottomAxis->SetMinMax(0, 100);

@@ -41,5 +41,9 @@ public:
 
 	double m_x[T_ARRAY_LEN];
 	double m_y[T_ARRAY_LEN];
+
+	CDialogEx *m_p_parent_dlg;
+	int m_max;	//最高温度对用的单体号
+	int m_min;
 	void UpdateChart();
 };

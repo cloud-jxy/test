@@ -36,4 +36,6 @@ public:
 	CString m_str_battery_t_l;
 
 	int ParseFrame(VCI_CAN_OBJ frame);
+
+	CDialogEx *m_p_parent_dlg;
 };

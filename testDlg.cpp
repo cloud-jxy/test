@@ -486,11 +486,11 @@ void CTestDlg::OnButtonResetcan()
 
 void CTestDlg::OnButtonSend() 
 {
-	//VCI_CAN_OBJ frame;
-	//frame.ID = 0x18067a70;
-	//frame.Data[0] = 0xf4;
-	//frame.Data[1] = 0x01;
-	//SendMessage(WM_MY_PARSE_FRAME, 0, (LPARAM)&frame);
+	VCI_CAN_OBJ frame;
+	frame.ID = 0x18407A70;
+	frame.Data[0] = 0xf4;
+	frame.Data[1] = 0x01;
+	SendMessage(WM_MY_PARSE_FRAME, 0, (LPARAM)&frame);
 
 	// TODO: Add your control notification handler code here
 	if(m_connect==0)

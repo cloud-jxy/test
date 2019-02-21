@@ -44,7 +44,7 @@ private:
 public:
 	CDialog *m_p_parent_dlg;
 
-private:
+//private:
 	TabCarDialog m_dlg_car;
 	TabDriverDialog m_dlg_driver;
 	TabPositionDialog m_dlg_position;
