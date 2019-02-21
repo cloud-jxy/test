@@ -1,7 +1,14 @@
 #pragma once
 #include "ControlCAN.h"
+#include "C:\pm\API_Samples\vc6Àý×Ó\test\ChartCtrl_source\ChartCtrl.h"
+#include ".\ChartCtrl_source\ChartTitle.h"
+#include ".\ChartCtrl_source\ChartAxisLabel.h"
+#include ".\ChartCtrl_source\ChartBarSerie.h"
+#include ".\ChartCtrl_source\ChartLineSerie.h"
+
 
 #define V_ARRAY_LEN 180
+#define WM_CHART_V (WM_USER + 2001)
 
 // TabBatteryV ¶Ô»°¿ò
 
@@ -27,7 +34,12 @@ public:
 	int ParseFrame(VCI_CAN_OBJ frame);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg LRESULT OnChartV(WPARAM wParam, LPARAM lParam);
 
 	double m_x[V_ARRAY_LEN];
 	double m_y[V_ARRAY_LEN];
+	virtual BOOL OnInitDialog();
+
+	void UpdateChart();
+	CChartCtrl m_chart;
 };

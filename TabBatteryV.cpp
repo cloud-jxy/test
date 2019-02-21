@@ -7,6 +7,20 @@
 #include "afxdialogex.h"
 
 
+static BOOL g_run;
+
+static DWORD WINAPI ThreadProc(LPVOID pParam) {
+	TabBatteryV *dlg = (TabBatteryV *)pParam;
+
+	while (g_run) {
+		Sleep(1000);
+		//dlg->UpdateChart();
+		dlg->SendMessage(WM_CHART_V, 0, 0);
+	}
+
+	return 0;
+}
+
 // TabBatteryV 对话框
 
 IMPLEMENT_DYNAMIC(TabBatteryV, CDialogEx)
@@ -24,12 +38,14 @@ TabBatteryV::~TabBatteryV()
 void TabBatteryV::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_CUSTOM1, m_chart);
 }
 
 
 BEGIN_MESSAGE_MAP(TabBatteryV, CDialogEx)
 	ON_WM_VSCROLL()
 	ON_WM_HSCROLL()
+	ON_MESSAGE(WM_CHART_V, &TabBatteryV::OnChartV)
 END_MESSAGE_MAP()
 
 
@@ -142,6 +158,7 @@ void TabBatteryV::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	SCROLLINFO scrollInfo;
 	GetScrollInfo(SB_HORZ, &scrollInfo, SIF_ALL);
+
 	switch (nSBCode)
 	{
 	case   SB_LINEUP:
@@ -214,12 +231,68 @@ BOOL TabBatteryV::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-
+	int i = 0;
 	for (i = 0; i < V_ARRAY_LEN; i++) {
 		m_x[i] = i;
 		m_y[i] = 0;
 	}
 
+	// 设置滚动条
+	SCROLLINFO scrollInfo;
+	GetScrollInfo(SB_HORZ, &scrollInfo, SIF_ALL);
+	scrollInfo.nMax = 255;
+	SetScrollInfo(SB_HORZ, &scrollInfo, SIF_ALL);
+
+	// 设置chart
+	CChartStandardAxis *pBottomAxis = m_chart.CreateStandardAxis(CChartCtrl::BottomAxis);
+	pBottomAxis->SetMinMax(0, 100);
+	pBottomAxis->SetAutomatic(true);
+	pBottomAxis->SetTickIncrement(false, 5);
+
+	CChartStandardAxis *pLeftAxis = m_chart.CreateStandardAxis(CChartCtrl::LeftAxis);
+	pLeftAxis->SetMinMax(0, 1);
+	pLeftAxis->SetAutomatic(true);
+	pLeftAxis->GetLabel()->SetText(_T("电压/V"));
+	pLeftAxis->SetAutomaticMode(CChartAxis::FullAutomatic);
+
+	//m_chart.GetTitle()->AddString(_T("电压统计图"));
+
+	m_chart.RemoveAllSeries();
+	CChartBarSerie *pLineSerie = m_chart.CreateBarSerie();
+	pLineSerie->SetSeriesOrdering(poXOrdering);
+	pLineSerie->AddPoints(m_x, m_y, V_ARRAY_LEN);
+
+
+	// 起线程，刷新chart
+	g_run = TRUE;
+	AfxBeginThread((AFX_THREADPROC)ThreadProc, (LPVOID)this);
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void TabBatteryV::UpdateChart()
+{
+	int i = 0;
+
+	for (i = 0; i < V_ARRAY_LEN; i++) {
+		m_y[i] = (rand() % 10);
+	}
+
+	m_chart.EnableRefresh(false);
+
+	m_chart.RemoveAllSeries();
+	CChartBarSerie *pLineSerie = m_chart.CreateBarSerie();
+	pLineSerie->SetSeriesOrdering(poXOrdering);
+	pLineSerie->AddPoints(m_x, m_y, V_ARRAY_LEN);
+
+	m_chart.EnableRefresh(true);
+}
+
+
+LRESULT TabBatteryV::OnChartV(WPARAM wParam, LPARAM lParam) {
+	UpdateChart();
+
+	return 0;
 }

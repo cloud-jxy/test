@@ -6,7 +6,9 @@
 #include "TabBatteryT.h"
 #include "afxdialogex.h"
 
+static BOOL g_run;
 
+DWORD WINAPI ThreadProc(LPVOID pParam);
 
 // TabBatteryT 对话框
 
@@ -32,6 +34,7 @@ void TabBatteryT::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(TabBatteryT, CDialogEx)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
+	ON_MESSAGE(WM_CHART_T, &TabBatteryT::OnChartT)
 END_MESSAGE_MAP()
 
 
@@ -70,6 +73,7 @@ BOOL TabBatteryT::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+
 	int i = 0;
 
 	for (i = 0; i < T_ARRAY_LEN; i++) {
@@ -77,37 +81,28 @@ BOOL TabBatteryT::OnInitDialog()
 		m_y[i] = 0;
 	}
 
-
-	m_chart.EnableScrollBar(true);
-
 	CChartStandardAxis *pBottomAxis = m_chart.CreateStandardAxis(CChartCtrl::BottomAxis);
 	pBottomAxis->SetMinMax(0, 100);
 	pBottomAxis->SetAutomatic(true);
-	pBottomAxis->EnableScrollBar(true);
-	pBottomAxis->SetTickIncrement(false, 10);
-	pBottomAxis->EnableScrollBar(true);
-	pBottomAxis->SetAutomaticMode(CChartAxis::FullAutomatic);
+	pBottomAxis->SetTickIncrement(false, 5);
 
 	CChartStandardAxis *pLeftAxis = m_chart.CreateStandardAxis(CChartCtrl::LeftAxis);
-	pLeftAxis->SetMinMax(0, 10);
+	pLeftAxis->SetMinMax(0, 1);
 	pLeftAxis->SetAutomatic(true);
 	pLeftAxis->GetLabel()->SetText(_T("温度"));
 	pLeftAxis->SetAutomaticMode(CChartAxis::FullAutomatic);
 
-	m_chart.GetTitle()->AddString(_T("温度统计图"));
-
-	double x[100];
-	double y[100];
-	int i = 0;
-	for (i = 0; i < 100; i++) {
-		x[i] = i;
-		y[i] = sin((double)x[i] / 0.01);
-	}
+	//m_chart.GetTitle()->AddString(_T("温度统计图"));
 
 	m_chart.RemoveAllSeries();
 	CChartBarSerie *pLineSerie = m_chart.CreateBarSerie();
 	pLineSerie->SetSeriesOrdering(poXOrdering);
-	pLineSerie->AddPoints(x, y, 100);
+	pLineSerie->AddPoints(m_x, m_y, T_ARRAY_LEN);
+
+
+	// 起线程，刷新chart
+	g_run = TRUE;
+	AfxBeginThread((AFX_THREADPROC)ThreadProc, (LPVOID)this);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
@@ -262,3 +257,40 @@ void TabBatteryT::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
+static DWORD WINAPI ThreadProc(LPVOID pParam) {
+	TabBatteryT *dlg = (TabBatteryT *)pParam;
+
+	while (g_run) {
+		Sleep(1000);
+		//dlg->UpdateChart();
+		dlg->SendMessage(WM_CHART_T, 0, 0);
+	}
+
+	return 0;
+}
+
+
+void TabBatteryT::UpdateChart()
+{
+	int i = 0;
+
+	for (i = 0; i < T_ARRAY_LEN; i++) {
+		m_y[i] = (rand() % 10);
+	}
+
+	m_chart.EnableRefresh(false);
+
+	m_chart.RemoveAllSeries();
+	CChartBarSerie *pLineSerie = m_chart.CreateBarSerie();
+	pLineSerie->SetSeriesOrdering(poXOrdering);
+	pLineSerie->AddPoints(m_x, m_y, T_ARRAY_LEN);
+
+	m_chart.EnableRefresh(true);
+}
+
+
+LRESULT TabBatteryT::OnChartT(WPARAM wParam, LPARAM lParam) {
+	UpdateChart();
+
+	return 0;
+}
