@@ -66,7 +66,8 @@ int TabBatteryV::ParseFrame(VCI_CAN_OBJ frame) {
 	每16bite 表示一个温度值，精度0.001 偏移量0
 	*/
 	for (i = 0; i < 8; i += 2) {
-		m_y[h_id - start_index + i] = (data[i] + data[i + 1] << 8) * 0.001;
+		int x = (h_id - start_index) * 4 + i / 2;
+		m_y[x] = (data[i] + data[i + 1] << 8) * 0.001;
 	}
 
 	return 0;

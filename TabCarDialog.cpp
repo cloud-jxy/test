@@ -89,6 +89,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		*/
 		val = data[2];
 		m_str_journey_speedup.Format("%d", val);
+		m_str_driver_status = (val == 0) ? _T("无驱动力") : _T("有驱动力");
 
 		/*
 		制动踏板状态
@@ -101,8 +102,7 @@ int TabCarDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		/*
 		制动踏板状态：=0，无制动力，>0有制动力
 		*/
-		/*val = m_
-		m_str_braking_status = (val)*/
+		m_str_braking_status = (val == 0) ? _T("无制动力") : _T("有制动力");
 
 	}
 	else if (ID == 0x18047A70) {
