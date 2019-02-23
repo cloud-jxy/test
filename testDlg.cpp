@@ -84,6 +84,10 @@ CTestDlg::CTestDlg(CWnd* pParent /*=NULL*/)
 	m_info_dialog = new CInfoDialog();
 	m_info_dialog->Create(IDD_INFO_DIALOG, this);
 	m_info_dialog->m_p_parent_dlg = this;
+
+	m_haide_protocol_dialog = new HaideProtocolDialog();
+	m_haide_protocol_dialog->Create(IDD_HAIDE_PROTOCOL_DIALOG, this);
+	m_haide_protocol_dialog->m_p_parent_dlg = this;
 }
 
 void CTestDlg::DoDataExchange(CDataExchange* pDX)
@@ -125,6 +129,7 @@ BEGIN_MESSAGE_MAP(CTestDlg, CDialog)
 
 	ON_MESSAGE(WM_INFO_DIALOG_CLOSE, &CTestDlg::OnInfoDialogClose)
 	ON_MESSAGE(WM_MY_PARSE_FRAME, &CTestDlg::OnParseFrame)
+	ON_BN_CLICKED(IDC_CHECK2, &CTestDlg::OnBnClickedCheck2)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -757,6 +762,7 @@ void CTestDlg::OnSelchangeComboDevType()
 }
 
 
+// 控制弹出国标协议解析界面
 void CTestDlg::OnBnClickedCheck1()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -771,8 +777,23 @@ void CTestDlg::OnBnClickedCheck1()
 	}
 }
 
+// 控制弹出海德协议解析界面
+void CTestDlg::OnBnClickedCheck2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int status = ((CButton *)GetDlgItem(IDC_CHECK2))->GetCheck();
+
+	if (status == 0) {
+		m_haide_protocol_dialog->ShowWindow(SW_HIDE);
+	}
+	else {
+		m_haide_protocol_dialog->ShowWindow(SW_SHOW);
+	}
+}
+
 
 void CTestDlg::ParseFrame(VCI_CAN_OBJ frame)
 {
 	m_info_dialog->ParseFrame(frame);
 }
+

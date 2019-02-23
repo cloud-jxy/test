@@ -13,6 +13,7 @@
 #include "TestListBox.h"
 #include "afxwin.h"
 #include "ControlCAN.h"
+#include "HaideProtocolDialog.h"
 
 class CInfoDialog;
 
@@ -83,8 +84,10 @@ public:
 	afx_msg void OnBnClickedCheck1();
 	CButton m_cbx_parse;
 	CInfoDialog *m_info_dialog;
+	HaideProtocolDialog *m_haide_protocol_dialog;
 
 	void ParseFrame(VCI_CAN_OBJ frame);
+	afx_msg void OnBnClickedCheck2();
 };
 
 //{{AFX_INSERT_LOCATION}}
