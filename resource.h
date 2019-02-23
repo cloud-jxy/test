@@ -127,7 +127,6 @@
 #define IDC_EDIT_START_BITE             1077
 #define IDC_EDIT_BITE_LEN               1078
 #define IDC_EDIT_RATIO                  1079
-#define IDC_EDIT_RATIO2                 1080
 #define IDC_EDIT_OFFSET                 1080
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002

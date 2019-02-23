@@ -30,4 +30,8 @@ public:
 	afx_msg void OnClose();
 	CListCtrl m_ctrl_list;
 	afx_msg void OnBnClickedButtonAdd();
+	afx_msg void OnBnClickedButtonDel();
+	afx_msg void OnBnClickedButtonEdit();
+	int GetCurListItem();
+	afx_msg void OnBnClickedButtonClear();
 };
