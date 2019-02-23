@@ -18,6 +18,7 @@
 #define IDD_TAB_BATTERY_T_DIALOG        138
 #define IDD_TAB_WARN_DIALOG             139
 #define IDD_HAIDE_PROTOCOL_DIALOG       141
+#define IDD_FRAME_RULE_DIALOG           143
 #define IDC_COMBO_PORT                  1001
 #define IDC_COMBO_INDEX                 1001
 #define IDC_COMBO_BAUD                  1002
@@ -112,7 +113,22 @@
 #define IDC_CUSTOM_T                    1062
 #define IDC_CUSTOM1                     1063
 #define IDC_LIST1                       1065
+#define IDC_BUTTON_ADD                  1066
+#define IDC_BUTTON_DEL                  1067
+#define IDC_BUTTON_EDIT                 1068
+#define IDC_BUTTON_CLEAR                1069
+#define IDC_BUTTON_IMPORT               1070
+#define IDC_BUTTON_EXPORT               1071
+#define IDC_LIST                        1072
+#define IDC_EDIT_NAME                   1074
+#define IDC_EDIT_ID                     1075
+#define IDC_EDIT_START_BYTE             1076
 #define IDC_LIST2                       1077
+#define IDC_EDIT_START_BITE             1077
+#define IDC_EDIT_BITE_LEN               1078
+#define IDC_EDIT_RATIO                  1079
+#define IDC_EDIT_RATIO2                 1080
+#define IDC_EDIT_OFFSET                 1080
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -125,9 +141,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        143
+#define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1066
+#define _APS_NEXT_CONTROL_VALUE         1075
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -1,5 +1,6 @@
 #pragma once
-
+#include "afxcmn.h"
+#include "FrameRuleDialog.h"
 
 class CTestDlg;
 
@@ -27,4 +28,6 @@ public:
 
 	CTestDlg *m_p_parent_dlg;
 	afx_msg void OnClose();
+	CListCtrl m_ctrl_list;
+	afx_msg void OnBnClickedButtonAdd();
 };

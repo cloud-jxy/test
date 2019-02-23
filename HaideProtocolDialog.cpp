@@ -25,11 +25,13 @@ HaideProtocolDialog::~HaideProtocolDialog()
 void HaideProtocolDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_LIST, m_ctrl_list);
 }
 
 
 BEGIN_MESSAGE_MAP(HaideProtocolDialog, CDialogEx)
 	ON_WM_CLOSE()
+	ON_BN_CLICKED(IDC_BUTTON_ADD, &HaideProtocolDialog::OnBnClickedButtonAdd)
 END_MESSAGE_MAP()
 
 
@@ -52,4 +54,12 @@ void HaideProtocolDialog::OnClose()
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	((CButton *)m_p_parent_dlg->GetDlgItem(IDC_CHECK2))->SetCheck(false);
 	CDialogEx::OnClose();
+}
+
+
+void HaideProtocolDialog::OnBnClickedButtonAdd()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	FrameRuleDialog dlg;
+	dlg.DoModal();
 }

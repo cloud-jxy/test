@@ -160,6 +160,7 @@
     <ClCompile Include="ChartCtrl_source\ChartSurfaceSerie.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartTitle.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartXYSerie.cpp" />
+    <ClCompile Include="FrameRuleDialog.cpp" />
     <ClCompile Include="HaideProtocolDialog.cpp" />
     <ClCompile Include="InfoDialog.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -214,6 +215,7 @@
     <ClInclude Include="ChartCtrl_source\ChartXYSerie.h" />
     <ClInclude Include="ChartCtrl_source\PointsOrdering.h" />
     <ClInclude Include="ControlCAN.h" />
+    <ClInclude Include="FrameRuleDialog.h" />
     <ClInclude Include="HaideProtocolDialog.h" />
     <ClInclude Include="InfoDialog.h" />
     <ClInclude Include="Resource.h" />
