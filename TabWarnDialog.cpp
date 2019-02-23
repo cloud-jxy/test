@@ -92,11 +92,16 @@ BOOL TabWarnDialog::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 
+	// 设置表头
 	m_ctrl_list_1.InsertColumn(0, _T("通用报警标志"), 0, 175);
 	m_ctrl_list_1.InsertColumn(1, _T("等级"), 0, 80);
 
 	m_ctrl_list_2.InsertColumn(0, _T("通用报警标志"), 0, 175);
 	m_ctrl_list_2.InsertColumn(1, _T("等级"), 0, 80);
+
+	// 设置CListCtrl格式
+	m_ctrl_list_1.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+	m_ctrl_list_2.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
 
 	UpdateWarns();
 
