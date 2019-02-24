@@ -794,6 +794,15 @@ void CTestDlg::OnBnClickedCheck2()
 
 void CTestDlg::ParseFrame(VCI_CAN_OBJ frame)
 {
-	m_info_dialog->ParseFrame(frame);
+	int status = ((CButton *)GetDlgItem(IDC_CHECK1))->GetCheck();
+
+	if (status) {
+		m_info_dialog->ParseFrame(frame);
+	}
+
+	status = ((CButton *)GetDlgItem(IDC_CHECK2))->GetCheck();
+	if (status) {
+		m_haide_protocol_dialog->ParseFrame(frame);
+	}
 }
 

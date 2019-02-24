@@ -8,6 +8,7 @@
 #include "testDlg.h"
 
 
+
 // HaideProtocolDialog 对话框
 
 IMPLEMENT_DYNAMIC(HaideProtocolDialog, CDialogEx)
@@ -35,6 +36,7 @@ BEGIN_MESSAGE_MAP(HaideProtocolDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_DEL, &HaideProtocolDialog::OnBnClickedButtonDel)
 	ON_BN_CLICKED(IDC_BUTTON_EDIT, &HaideProtocolDialog::OnBnClickedButtonEdit)
 	ON_BN_CLICKED(IDC_BUTTON_CLEAR, &HaideProtocolDialog::OnBnClickedButtonClear)
+	ON_BN_CLICKED(IDC_BUTTON_IMPORT, &HaideProtocolDialog::OnBnClickedButtonImport)
 END_MESSAGE_MAP()
 
 
@@ -53,7 +55,10 @@ BOOL HaideProtocolDialog::OnInitDialog()
 
 	/*test code*/
 	if (1) {
-		FrameRuleObj *obj = new FrameRuleObj();
+		int i = 0;
+		FrameRuleObj *obj = NULL;
+			
+		/*obj = new FrameRuleObj();
 		obj->name = _T("车辆状态");
 		obj->id = _T("0x00000012");
 		obj->start_byte = 7;
@@ -62,8 +67,9 @@ BOOL HaideProtocolDialog::OnInitDialog()
 		obj->ratio = 1;
 		obj->offset = 0;
 
-		m_ctrl_list.InsertItem(0, obj->name);
-		m_ctrl_list.SetItemData(0, (DWORD_PTR)obj);
+		m_ctrl_list.InsertItem(i, obj->name);
+		m_ctrl_list.SetItemData(i, (DWORD_PTR)obj);
+		i++;
 
 		obj = new FrameRuleObj();
 		obj->name = _T("充电状态");
@@ -74,8 +80,48 @@ BOOL HaideProtocolDialog::OnInitDialog()
 		obj->ratio = 1;
 		obj->offset = 0;
 
-		m_ctrl_list.InsertItem(1, obj->name);
-		m_ctrl_list.SetItemData(1, (DWORD_PTR)obj);
+		m_ctrl_list.InsertItem(i, obj->name);
+		m_ctrl_list.SetItemData(i, (DWORD_PTR)obj);
+		i++;
+
+		obj = new FrameRuleObj();
+		obj->name = _T("车速");
+		obj->id = _T("0x18037a7a");
+		obj->start_byte = 1;
+		obj->start_bite = 0;
+		obj->bite_len = 16;
+		obj->ratio = 0.00390625;
+		obj->offset = 0;
+
+		m_ctrl_list.InsertItem(i, obj->name);
+		m_ctrl_list.SetItemData(i, (DWORD_PTR)obj);
+		i++;
+
+		obj = new FrameRuleObj();
+		obj->name = _T("累计里程");
+		obj->id = _T("0x18017a70");
+		obj->start_byte = 0;
+		obj->start_bite = 0;
+		obj->bite_len = 32;
+		obj->ratio = 0.1;
+		obj->offset = 0;
+
+		m_ctrl_list.InsertItem(i, obj->name);
+		m_ctrl_list.SetItemData(i, (DWORD_PTR)obj);
+		i++;*/
+
+		obj = new FrameRuleObj();
+		obj->name = _T("DC-DC状态");
+		obj->id = _T("0x18097A70");
+		obj->start_byte = 1;
+		obj->start_bite = 2;
+		obj->bite_len = 2;
+		obj->ratio = 1;
+		obj->offset = 0;
+
+		m_ctrl_list.InsertItem(i, obj->name);
+		m_ctrl_list.SetItemData(i, (DWORD_PTR)obj);
+		i++;
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -164,4 +210,35 @@ void HaideProtocolDialog::OnBnClickedButtonClear()
 	}
 
 	m_ctrl_list.DeleteAllItems();
+}
+
+
+int HaideProtocolDialog::ParseFrame(VCI_CAN_OBJ obj)
+{
+	int i = 0;
+	int len = m_ctrl_list.GetItemCount();
+
+	for (i = 0; i < len; i++) {
+		FrameRuleObj *rule = (FrameRuleObj *)m_ctrl_list.GetItemData(i);
+
+		if (rule->IsSameId(obj.ID) || 1) {
+			CString val = rule->Parse2(obj.Data);
+
+			m_ctrl_list.SetItemText(i, 1, val);
+		}
+	}
+
+	return 0;
+}
+
+
+void HaideProtocolDialog::OnBnClickedButtonImport()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	VCI_CAN_OBJ obj;
+	obj.ID = 1;
+	obj.Data[0] = 0x01, obj.Data[1] = 0x04, obj.Data[2] = 0x03, obj.Data[3] = 0x04,
+	obj.Data[4] = 0x05, obj.Data[5] = 0x06, obj.Data[6] = 0x07, obj.Data[7] = 0x08;
+
+	ParseFrame(obj);
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "afxcmn.h"
 #include "FrameRuleDialog.h"
+#include "ControlCAN.h"
+
 
 class CTestDlg;
 
@@ -34,4 +36,6 @@ public:
 	afx_msg void OnBnClickedButtonEdit();
 	int GetCurListItem();
 	afx_msg void OnBnClickedButtonClear();
+	int ParseFrame(VCI_CAN_OBJ obj);
+	afx_msg void OnBnClickedButtonImport();
 };
