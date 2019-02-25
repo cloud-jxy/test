@@ -49,12 +49,26 @@ public:
 			i_val = val & flag;
 		}
 		else {
-			int left_len = bite_len;
+			if (is_intel) {
+				int left_len = bite_len;
 
-			while (left_len) {
-				int index = start_byte + (bite_len - left_len) / 8;
-				i_val = i_val + (data[index] << (bite_len - left_len));
-				left_len -= 8;
+				while (left_len) {
+					int index = start_byte + (bite_len - left_len) / 8;
+					i_val = i_val + (data[index] << (bite_len - left_len));
+					left_len -= 8;
+				}
+			}
+			else {
+				int left_len = bite_len;
+				int byte_len = bite_len / 8;
+				int offset_from_right = 0;
+
+				while (left_len) {
+					offset_from_right = (bite_len - left_len) / 8;
+					int index = start_byte + (byte_len - 1) - offset_from_right;
+					i_val = i_val + (data[index] << (bite_len - left_len));
+					left_len -= 8;
+				}
 			}
 		}
 
