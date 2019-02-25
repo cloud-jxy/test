@@ -2,6 +2,13 @@
 #include "afxcmn.h"
 #include "FrameRuleDialog.h"
 #include "ControlCAN.h"
+#include "CApplication.h"
+#include "CWorkbooks.h"
+#include "CWorkbook.h"
+#include "CWorksheets.h"
+#include "CWorksheet.h"
+#include "CRange.h"
+#include "Cnterior.h"
 
 
 class CTestDlg;
@@ -38,4 +45,13 @@ public:
 	afx_msg void OnBnClickedButtonClear();
 	int ParseFrame(VCI_CAN_OBJ obj);
 	afx_msg void OnBnClickedButtonImport();
+	afx_msg void OnBnClickedButtonExport();
+
+	void ReadExcelRow(int i, CRange range);
+
+	CStringArray *m_groups;	//记录所有的大项分组名称
+	CString m_curGroup;		//记录当前的大项分组名称
+
+	BOOL IsGroupHeaderRow(int row, CRange range);
+	BOOL IsMergeCell(CRange cell);
 };

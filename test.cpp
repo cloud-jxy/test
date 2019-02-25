@@ -54,6 +54,8 @@ BOOL CTestApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
+	AfxOleInit();
+
 	CTestDlg dlg;
 	m_pMainWnd = &dlg;
 	int nResponse = dlg.DoModal();

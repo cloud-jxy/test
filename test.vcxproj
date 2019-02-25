@@ -183,6 +183,7 @@
     <ResourceCompile Include="test.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CApplication.h" />
     <ClInclude Include="ChartCtrl_source\ChartAxis.h" />
     <ClInclude Include="ChartCtrl_source\ChartAxisLabel.h" />
     <ClInclude Include="ChartCtrl_source\ChartBalloonLabel.h" />
@@ -214,7 +215,13 @@
     <ClInclude Include="ChartCtrl_source\ChartTitle.h" />
     <ClInclude Include="ChartCtrl_source\ChartXYSerie.h" />
     <ClInclude Include="ChartCtrl_source\PointsOrdering.h" />
+    <ClInclude Include="Cnterior.h" />
     <ClInclude Include="ControlCAN.h" />
+    <ClInclude Include="CRange.h" />
+    <ClInclude Include="CWorkbook.h" />
+    <ClInclude Include="CWorkbooks.h" />
+    <ClInclude Include="CWorksheet.h" />
+    <ClInclude Include="CWorksheets.h" />
     <ClInclude Include="FrameRuleDialog.h" />
     <ClInclude Include="HaideProtocolDialog.h" />
     <ClInclude Include="InfoDialog.h" />
@@ -241,6 +248,7 @@
     <None Include="ChartCtrl_source\ChartPointsArray.inl" />
     <None Include="ChartCtrl_source\ChartSerieBase.inl" />
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="res\test.rc2" />
   </ItemGroup>
   <ItemGroup>

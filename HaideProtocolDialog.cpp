@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(HaideProtocolDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_EDIT, &HaideProtocolDialog::OnBnClickedButtonEdit)
 	ON_BN_CLICKED(IDC_BUTTON_CLEAR, &HaideProtocolDialog::OnBnClickedButtonClear)
 	ON_BN_CLICKED(IDC_BUTTON_IMPORT, &HaideProtocolDialog::OnBnClickedButtonImport)
+	ON_BN_CLICKED(IDC_BUTTON_EXPORT, &HaideProtocolDialog::OnBnClickedButtonExport)
 END_MESSAGE_MAP()
 
 
@@ -53,8 +54,10 @@ BOOL HaideProtocolDialog::OnInitDialog()
 
 	m_ctrl_list.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
 
+	m_groups = new CStringArray();
+
 	/*test code*/
-	if (1) {
+	if (0) {
 		int i = 0;
 		FrameRuleObj *obj = NULL;
 			
@@ -235,10 +238,127 @@ int HaideProtocolDialog::ParseFrame(VCI_CAN_OBJ obj)
 void HaideProtocolDialog::OnBnClickedButtonImport()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	CFileDialog dlg(FALSE, _T(".xls"), NULL
+		, OFN_FILEMUSTEXIST
+		//, _T("Microsoft Excel Files(*.xls)|*.xls|Microsoft Excel Files(*.xlsx)|*.xlsx||"));
+	    , _T("Microsoft Excel Files(*.xlsx)|*.xlsx||"));
+
+	int nResponse = dlg.DoModal();
+
+	if (nResponse == IDOK) {
+		CString fileName = dlg.GetPathName();
+
+		CApplication app;
+		CWorkbooks books;
+		CWorkbook book;
+		CWorksheets sheets;
+		CWorksheet sheet;
+
+		CRange range;
+
+		LPDISPATCH lpDisp = NULL;
+
+		int i, j;
+
+		if (!app.CreateDispatch(_T("Excel.Application"))) {
+			MessageBox(_T("无法创建Excel应用"));
+			return;
+		}
+		else {
+			MessageBox(_T("创建Excel成功"));
+		}
+
+
+		books.AttachDispatch(app.get_Workbooks(), TRUE);
+		lpDisp = books.Open(fileName
+			, _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing)
+			, _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing)
+			, _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing));
+
+		// 获得活动的WorkBook（工作簿）
+		book.AttachDispatch(lpDisp, TRUE);
+		// 获得活动的WorkSheet（工作表）
+		sheet.AttachDispatch(book.get_ActiveSheet(), TRUE);
+		// 获得使用的区域Range（区域）
+		range.AttachDispatch(sheet.get_UsedRange(), TRUE);
+
+		// 获得试用的行数
+		long lgUsedRowNum = 0;
+		range.AttachDispatch(range.get_Rows(), TRUE);
+		lgUsedRowNum = range.get_Count();
+
+		// 获得使用的列数
+		long lgUsedColumnNum = 0;
+		range.AttachDispatch(range.get_Columns(), TRUE);
+		lgUsedColumnNum = range.get_Count();
+
+		// 读取sheet的名称
+		CString strSheetName = sheet.get_Name();
+
+		// 得到全部Cells，此时CurRange是cells的集合
+		range.AttachDispatch(sheet.get_Cells(), TRUE);
+
+		// i = 1: 跳过标头，从第二行开始
+		for (i = 1; i < lgUsedRowNum; i++) {
+			ReadExcelRow(i, range);
+		}
+	}
+}
+
+// TRUE：是合并单元格
+BOOL HaideProtocolDialog::IsMergeCell(CRange cell) {
+	return cell.get_MergeCells().boolVal != 0;
+}
+
+
+BOOL HaideProtocolDialog::IsGroupHeaderRow(int row, CRange range) {
+	CRange oCurCell;
+	CRange oNextCell;
+
+	oCurCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
+		COleVariant((long)1)).pdispVal, TRUE);
+
+	if (IsMergeCell(oCurCell) == FALSE) {
+		return FALSE;
+	}
+
+	/*
+	通过颜色值判断，失败：get_ColorIndex总是返回0，get_Color返回0xffffff
+	新判断方法：第2个是否也是合并单元格
+	*/
+	oNextCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
+		COleVariant((long)2)).pdispVal, TRUE);
+
+	return IsMergeCell(oNextCell);
+}
+
+void HaideProtocolDialog::ReadExcelRow(int row, CRange range) {
+	CRange oCurCell;
+	CString strItemName;
+
+	oCurCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
+		COleVariant((long)1)).pdispVal, TRUE);
+	strItemName = oCurCell.get_Text().bstrVal;
+	
+	if (IsGroupHeaderRow(row, range)) {
+		// 处理分组头
+		m_curGroup = strItemName;
+		m_groups->Add(strItemName);
+	}
+	else if (!strItemName.IsEmpty()) {
+		// 不为空，即认定是解析项
+
+	}
+}
+
+void HaideProtocolDialog::OnBnClickedButtonExport()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// test code
 	VCI_CAN_OBJ obj;
 	obj.ID = 1;
-	obj.Data[0] = 0x01, obj.Data[1] = 0x04, obj.Data[2] = 0x03, obj.Data[3] = 0x04,
-	obj.Data[4] = 0x05, obj.Data[5] = 0x06, obj.Data[6] = 0x07, obj.Data[7] = 0x08;
+	obj.Data[0] = 0x01, obj.Data[1] = 0x02, obj.Data[2] = 0x03, obj.Data[3] = 0x04,
+		obj.Data[4] = 0x05, obj.Data[5] = 0x06, obj.Data[6] = 0x07, obj.Data[7] = 0x08;
 
 	ParseFrame(obj);
 }
