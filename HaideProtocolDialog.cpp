@@ -264,10 +264,6 @@ void HaideProtocolDialog::OnBnClickedButtonImport()
 			MessageBox(_T("无法创建Excel应用"));
 			return;
 		}
-		else {
-			MessageBox(_T("创建Excel成功"));
-		}
-
 
 		books.AttachDispatch(app.get_Workbooks(), TRUE);
 		lpDisp = books.Open(fileName
@@ -332,22 +328,94 @@ BOOL HaideProtocolDialog::IsGroupHeaderRow(int row, CRange range) {
 	return IsMergeCell(oNextCell);
 }
 
-void HaideProtocolDialog::ReadExcelRow(int row, CRange range) {
+// col从1起
+CString HaideProtocolDialog::GetExcelText(int row, int col, CRange range) {
 	CRange oCurCell;
-	CString strItemName;
+	
+	oCurCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
+		COleVariant((long)col)).pdispVal, TRUE);
+
+	return oCurCell.get_Text().bstrVal;
+}
+
+
+CString HaideProtocolDialog::GetExcelText(CRange cell) {
+	return cell.get_Text().bstrVal;
+}
+
+double HaideProtocolDialog::GetExcelVal(int row, int col, CRange range) {
+	double ret = 0;
+	CString str;
+	CRange oCurCell;
 
 	oCurCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
+		COleVariant((long)col)).pdispVal, TRUE);
+	str = oCurCell.get_Text().bstrVal;
+
+	ret = atof(str.GetBuffer(0));
+	return ret;
+}
+
+
+void HaideProtocolDialog::AddToListCtrl(FrameRuleObj *obj) {
+	int index = m_ctrl_list.GetItemCount();
+
+	m_ctrl_list.InsertItem(index, obj->name);
+	m_ctrl_list.SetItemData(index, (DWORD_PTR)obj);
+}
+
+
+
+void HaideProtocolDialog::ReadRuleRow(int row, CRange range) {
+	CRange oCurCell;
+	CString strItemName;
+	FrameRuleObj *rule = NULL;
+		
+	rule = new FrameRuleObj();
+
+	// 解析row
+	rule->group = m_curGroup;
+	rule->name = GetExcelText(row, 2, range);
+	rule->description1 = GetExcelText(row, 3, range);
+	rule->id = GetExcelText(row, 4, range);
+	rule->is_intel = GetExcelText(row, 5, range).CompareNoCase(_T("INTEL")) ? FALSE : TRUE;
+	rule->start_byte = (int)GetExcelVal(row, 6, range);
+	rule->start_bite = (int)GetExcelVal(row, 7, range);
+	rule->bite_len = (int)GetExcelVal(row, 8, range);
+	rule->ratio = GetExcelVal(row, 9, range);
+	rule->offset = GetExcelVal(row, 10, range);
+	rule->str_from = GetExcelText(row, 11, range);
+	rule->description2 = GetExcelText(row, 12, range);
+
+	// 插入CListCtrl
+	AddToListCtrl(rule);
+}
+
+void HaideProtocolDialog::ReadExcelRow(int row, CRange range) {
+	CRange cellGroup;
+	CString strGroupName;
+	CRange cellName;
+	CString strName;
+
+	cellGroup.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
 		COleVariant((long)1)).pdispVal, TRUE);
-	strItemName = oCurCell.get_Text().bstrVal;
+	strGroupName = cellGroup.get_Text().bstrVal;
 	
 	if (IsGroupHeaderRow(row, range)) {
 		// 处理分组头
-		m_curGroup = strItemName;
-		m_groups->Add(strItemName);
-	}
-	else if (!strItemName.IsEmpty()) {
-		// 不为空，即认定是解析项
+		m_curGroup = strGroupName;
+		m_groups->Add(strGroupName);
 
+		return;
+	}
+
+	cellName.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
+		COleVariant((long)2)).pdispVal, TRUE);
+	strName = cellName.get_Text().bstrVal;
+
+	if (!strName.IsEmpty()) {
+		// 不为空，即认定是规则解析项
+		ReadRuleRow(row, range);
 	}
 }
 

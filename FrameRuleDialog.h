@@ -14,8 +14,10 @@ public:
 
 	CString description1;
 	CString description2;
+	CString group;
 
 	BOOL is_intel;
+	CString str_from;
 
 	BOOL IsSameId(int i)
 	{
@@ -123,4 +125,6 @@ public:
 	int m_list_index;
 	afx_msg void OnBnClickedCheck1();
 	afx_msg void OnBnClickedCheck2();
+	CString m_str_group;
+	CString m_str_from;
 };

@@ -23,6 +23,8 @@ FrameRuleDialog::FrameRuleDialog(CWnd* pParent /*=NULL*/)
 	, m_offset(0)
 	, m_str_decription1(_T(""))
 	, m_str_decription2(_T(""))
+	, m_str_group(_T(""))
+	, m_str_from(_T(""))
 {
 
 }
@@ -43,6 +45,8 @@ void FrameRuleDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_OFFSET, m_offset);
 	DDX_Text(pDX, IDC_EDIT_DESCRIPTION_1, m_str_decription1);
 	DDX_Text(pDX, IDC_EDIT_DESCRIPTION_2, m_str_decription2);
+	DDX_Text(pDX, IDC_EDIT_GROUP, m_str_group);
+	DDX_Text(pDX, IDC_EDIT_FROM, m_str_from);
 }
 
 
@@ -77,19 +81,22 @@ void FrameRuleDialog::OnBnClickedOk()
 	}
 	
 	obj->name = m_str_name;
+	obj->description1 = m_str_decription1;
 	obj->id = m_str_id;
+	obj->is_intel = ((CButton *)GetDlgItem(IDC_CHECK2))->GetCheck();
 	obj->start_byte = m_i_start_byte;
 	obj->start_bite = m_i_start_bite;
 	obj->bite_len = m_i_bite_len;
 	obj->ratio = m_ratio;
 	obj->offset = m_offset;
-	obj->description1 = m_str_decription1;
 	obj->description2 = m_str_decription2;
-	obj->is_intel = ((CButton *)GetDlgItem(IDC_CHECK2))->GetCheck();
+	obj->group = m_str_group;
+	obj->str_from = m_str_from;
 
 	if (m_operate == OperateType::ADD) {
-		p_ctrl_list->InsertItem(index, obj->name);
-		p_ctrl_list->SetItemData(index, (DWORD_PTR)obj);
+		m_p_dlg->AddToListCtrl(obj);
+		//p_ctrl_list->InsertItem(index, obj->name);
+		//p_ctrl_list->SetItemData(index, (DWORD_PTR)obj);
 	}
 	else {
 		p_ctrl_list->SetItemText(index, 0, obj->name);
@@ -112,15 +119,17 @@ BOOL FrameRuleDialog::OnInitDialog()
 		FrameRuleObj *obj = (FrameRuleObj *)(p_ctrl_list->GetItemData(m_list_index));
 
 		m_str_name = obj->name;
+		m_str_decription1 = obj->description1;
 		m_str_id = obj->id;
+		m_is_intel = obj->is_intel;
 		m_i_start_byte = obj->start_byte;
 		m_i_start_bite = obj->start_bite;
 		m_i_bite_len = obj->bite_len;
 		m_ratio = obj->ratio;
 		m_offset = obj->offset;
-		m_str_decription1 = obj->description1;
+		m_str_from = obj->str_from;
 		m_str_decription2 = obj->description2;
-		m_is_intel = obj->is_intel;
+		m_str_group = obj->group;
 
 		((CButton *)GetDlgItem(IDC_CHECK1))->SetCheck(!m_is_intel);
 		((CButton *)GetDlgItem(IDC_CHECK2))->SetCheck(m_is_intel);

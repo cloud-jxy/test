@@ -54,4 +54,9 @@ public:
 
 	BOOL IsGroupHeaderRow(int row, CRange range);
 	BOOL IsMergeCell(CRange cell);
+	void ReadRuleRow(int row, CRange range);
+	CString GetExcelText(int row, int col, CRange range); // col´Ó1Æð
+	CString GetExcelText(CRange cell);
+	double GetExcelVal(int row, int col, CRange range);
+	void AddToListCtrl(FrameRuleObj *obj);
 };
