@@ -128,6 +128,8 @@
 #define IDC_EDIT_BITE_LEN               1078
 #define IDC_EDIT_RATIO                  1079
 #define IDC_EDIT_OFFSET                 1080
+#define IDC_EDIT_DESCRIPTION_1          1081
+#define IDC_EDIT_DESCRIPTION_2          1082
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -142,7 +144,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1075
+#define _APS_NEXT_CONTROL_VALUE         1082
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

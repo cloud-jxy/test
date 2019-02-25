@@ -12,6 +12,11 @@ public:
 	double ratio;
 	double offset;
 
+	CString description1;
+	CString description2;
+
+	BOOL is_intel;
+
 	BOOL IsSameId(int i)
 	{
 		USES_CONVERSION;
@@ -109,7 +114,13 @@ public:
 	int m_i_bite_len;
 	double m_ratio;
 	double m_offset;
+	CString m_str_decription1;
+	CString m_str_decription2;
+	BOOL m_is_intel;
+
 	virtual BOOL OnInitDialog();
 
 	int m_list_index;
+	afx_msg void OnBnClickedCheck1();
+	afx_msg void OnBnClickedCheck2();
 };

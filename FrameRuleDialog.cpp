@@ -21,6 +21,8 @@ FrameRuleDialog::FrameRuleDialog(CWnd* pParent /*=NULL*/)
 	, m_i_bite_len(0)
 	, m_ratio(1)
 	, m_offset(0)
+	, m_str_decription1(_T(""))
+	, m_str_decription2(_T(""))
 {
 
 }
@@ -39,11 +41,15 @@ void FrameRuleDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_BITE_LEN, m_i_bite_len);
 	DDX_Text(pDX, IDC_EDIT_RATIO, m_ratio);
 	DDX_Text(pDX, IDC_EDIT_OFFSET, m_offset);
+	DDX_Text(pDX, IDC_EDIT_DESCRIPTION_1, m_str_decription1);
+	DDX_Text(pDX, IDC_EDIT_DESCRIPTION_2, m_str_decription2);
 }
 
 
 BEGIN_MESSAGE_MAP(FrameRuleDialog, CDialogEx)
 	ON_BN_CLICKED(IDOK, &FrameRuleDialog::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_CHECK1, &FrameRuleDialog::OnBnClickedCheck1)
+	ON_BN_CLICKED(IDC_CHECK2, &FrameRuleDialog::OnBnClickedCheck2)
 END_MESSAGE_MAP()
 
 
@@ -77,6 +83,9 @@ void FrameRuleDialog::OnBnClickedOk()
 	obj->bite_len = m_i_bite_len;
 	obj->ratio = m_ratio;
 	obj->offset = m_offset;
+	obj->description1 = m_str_decription1;
+	obj->description2 = m_str_decription2;
+	obj->is_intel = ((CButton *)GetDlgItem(IDC_CHECK2))->GetCheck();
 
 	if (m_operate == OperateType::ADD) {
 		p_ctrl_list->InsertItem(index, obj->name);
@@ -109,10 +118,35 @@ BOOL FrameRuleDialog::OnInitDialog()
 		m_i_bite_len = obj->bite_len;
 		m_ratio = obj->ratio;
 		m_offset = obj->offset;
+		m_str_decription1 = obj->description1;
+		m_str_decription2 = obj->description2;
+		m_is_intel = obj->is_intel;
+
+		((CButton *)GetDlgItem(IDC_CHECK1))->SetCheck(!m_is_intel);
+		((CButton *)GetDlgItem(IDC_CHECK2))->SetCheck(m_is_intel);
 
 		UpdateData(false);
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void FrameRuleDialog::OnBnClickedCheck1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	m_is_intel = FALSE;
+	((CButton *)GetDlgItem(IDC_CHECK1))->SetCheck(!m_is_intel);
+	((CButton *)GetDlgItem(IDC_CHECK2))->SetCheck(m_is_intel);
+}
+
+
+// intel cbx-box
+void FrameRuleDialog::OnBnClickedCheck2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	m_is_intel = TRUE;
+	((CButton *)GetDlgItem(IDC_CHECK1))->SetCheck(!m_is_intel);
+	((CButton *)GetDlgItem(IDC_CHECK2))->SetCheck(m_is_intel);
 }
