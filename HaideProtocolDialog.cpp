@@ -58,7 +58,7 @@ BOOL HaideProtocolDialog::OnInitDialog()
 		int i = 0;
 		FrameRuleObj *obj = NULL;
 			
-		/*obj = new FrameRuleObj();
+		obj = new FrameRuleObj();
 		obj->name = _T("³µÁ¾×´Ì¬");
 		obj->id = _T("0x00000012");
 		obj->start_byte = 7;
@@ -108,7 +108,7 @@ BOOL HaideProtocolDialog::OnInitDialog()
 
 		m_ctrl_list.InsertItem(i, obj->name);
 		m_ctrl_list.SetItemData(i, (DWORD_PTR)obj);
-		i++;*/
+		i++;
 
 		obj = new FrameRuleObj();
 		obj->name = _T("DC-DC×´Ì¬");

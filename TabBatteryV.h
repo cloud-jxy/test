@@ -1,6 +1,5 @@
 #pragma once
 #include "ControlCAN.h"
-#include "C:\pm\API_Samples\vc6Р§зг\test\ChartCtrl_source\ChartCtrl.h"
 #include ".\ChartCtrl_source\ChartTitle.h"
 #include ".\ChartCtrl_source\ChartAxisLabel.h"
 #include ".\ChartCtrl_source\ChartBarSerie.h"
