@@ -131,8 +131,9 @@
 #define IDC_EDIT_DESCRIPTION_1          1081
 #define IDC_EDIT_DESCRIPTION_2          1082
 #define IDC_EDIT_GROUP                  1083
-#define IDC_EDIT3                       1085
 #define IDC_EDIT_FROM                   1085
+#define IDC_CHECK_CONST                 1086
+#define IDC_EDIT_CONST                  1087
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -147,7 +148,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1086
+#define _APS_NEXT_CONTROL_VALUE         1088
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -25,6 +25,7 @@ FrameRuleDialog::FrameRuleDialog(CWnd* pParent /*=NULL*/)
 	, m_str_decription2(_T(""))
 	, m_str_group(_T(""))
 	, m_str_from(_T(""))
+	, m_str_const(_T(""))
 {
 
 }
@@ -47,6 +48,7 @@ void FrameRuleDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_DESCRIPTION_2, m_str_decription2);
 	DDX_Text(pDX, IDC_EDIT_GROUP, m_str_group);
 	DDX_Text(pDX, IDC_EDIT_FROM, m_str_from);
+	DDX_Text(pDX, IDC_EDIT_CONST, m_str_const);
 }
 
 
@@ -54,6 +56,7 @@ BEGIN_MESSAGE_MAP(FrameRuleDialog, CDialogEx)
 	ON_BN_CLICKED(IDOK, &FrameRuleDialog::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_CHECK1, &FrameRuleDialog::OnBnClickedCheck1)
 	ON_BN_CLICKED(IDC_CHECK2, &FrameRuleDialog::OnBnClickedCheck2)
+	ON_BN_CLICKED(IDC_CHECK_CONST, &FrameRuleDialog::OnBnClickedCheckConst)
 END_MESSAGE_MAP()
 
 
@@ -92,6 +95,13 @@ void FrameRuleDialog::OnBnClickedOk()
 	obj->description2 = m_str_decription2;
 	obj->group = m_str_group;
 	obj->str_from = m_str_from;
+	obj->is_const = ((CButton *)GetDlgItem(IDC_CHECK1))->GetCheck();
+	if (obj->is_const) {
+		obj->str_const = m_str_const;
+	}
+	else {
+		obj->str_const = _T("");
+	}
 
 	if (m_operate == OperateType::ADD) {
 		m_p_dlg->AddToListCtrl(obj);
@@ -130,11 +140,19 @@ BOOL FrameRuleDialog::OnInitDialog()
 		m_str_from = obj->str_from;
 		m_str_decription2 = obj->description2;
 		m_str_group = obj->group;
+		m_is_const = obj->is_const;
+		m_str_const = obj->str_const;
 
 		((CButton *)GetDlgItem(IDC_CHECK1))->SetCheck(!m_is_intel);
 		((CButton *)GetDlgItem(IDC_CHECK2))->SetCheck(m_is_intel);
 
+		UpdateForConstCtrl(m_is_const);
+
 		UpdateData(false);
+	}
+	else {
+		m_is_const = false;
+		UpdateForConstCtrl(false);
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -158,4 +176,18 @@ void FrameRuleDialog::OnBnClickedCheck2()
 	m_is_intel = TRUE;
 	((CButton *)GetDlgItem(IDC_CHECK1))->SetCheck(!m_is_intel);
 	((CButton *)GetDlgItem(IDC_CHECK2))->SetCheck(m_is_intel);
+}
+
+
+void FrameRuleDialog::UpdateForConstCtrl(BOOL status) {
+	((CButton *)GetDlgItem(IDC_CHECK_CONST))->SetCheck(status);
+	((CButton *)GetDlgItem(IDC_EDIT_CONST))->EnableWindow(status);
+}
+
+void FrameRuleDialog::OnBnClickedCheckConst()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	BOOL status = ((CButton *)GetDlgItem(IDC_CHECK_CONST))->GetCheck();
+	m_is_const = status;
+	UpdateForConstCtrl(status);
 }

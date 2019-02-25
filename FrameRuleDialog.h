@@ -19,6 +19,9 @@ public:
 	BOOL is_intel;
 	CString str_from;
 
+	BOOL is_const;
+	CString str_const;
+
 	BOOL IsSameId(int i)
 	{
 		USES_CONVERSION;
@@ -79,7 +82,13 @@ public:
 
 	CString Parse2(unsigned char *data) {
 		CString ret;
-		double val = Parse(data);
+		double val;
+
+		if (is_const) {
+			return str_const;
+		}
+
+		val = Parse(data);
 		
 		// 用int进行强制类型转换，如果后边有小数，int会有截断误差的
 		if ((int)val == val) {
@@ -133,6 +142,7 @@ public:
 	CString m_str_decription1;
 	CString m_str_decription2;
 	BOOL m_is_intel;
+	BOOL m_is_const;
 
 	virtual BOOL OnInitDialog();
 
@@ -141,4 +151,8 @@ public:
 	afx_msg void OnBnClickedCheck2();
 	CString m_str_group;
 	CString m_str_from;
+	CString m_str_const;
+	afx_msg void OnBnClickedCheckConst();
+
+	void UpdateForConstCtrl(BOOL b);
 };

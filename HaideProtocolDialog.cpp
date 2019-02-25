@@ -258,7 +258,7 @@ void HaideProtocolDialog::OnBnClickedButtonImport()
 
 		LPDISPATCH lpDisp = NULL;
 
-		int i, j;
+		int i;
 
 		if (!app.CreateDispatch(_T("Excel.Application"))) {
 			MessageBox(_T("无法创建Excel应用"));
@@ -368,7 +368,7 @@ void HaideProtocolDialog::AddToListCtrl(FrameRuleObj *obj) {
 
 void HaideProtocolDialog::ReadRuleRow(int row, CRange range) {
 	CRange oCurCell;
-	CString strItemName;
+	CString strText;
 	FrameRuleObj *rule = NULL;
 		
 	rule = new FrameRuleObj();
@@ -386,6 +386,8 @@ void HaideProtocolDialog::ReadRuleRow(int row, CRange range) {
 	rule->offset = GetExcelVal(row, 10, range);
 	rule->str_from = GetExcelText(row, 11, range);
 	rule->description2 = GetExcelText(row, 12, range);
+	rule->str_const = GetExcelText(row, 13, range);
+	rule->is_const = !rule->str_const.IsEmpty();
 
 	// 插入CListCtrl
 	AddToListCtrl(rule);
@@ -425,7 +427,7 @@ void HaideProtocolDialog::OnBnClickedButtonExport()
 	// test code
 	VCI_CAN_OBJ obj;
 	obj.ID = 1;
-	obj.Data[0] = 0x01, obj.Data[1] = 0x02, obj.Data[2] = 0x03, obj.Data[3] = 0x04,
+	obj.Data[0] = 0x04, obj.Data[1] = 0x03, obj.Data[2] = 0x02, obj.Data[3] = 0x01,
 		obj.Data[4] = 0x05, obj.Data[5] = 0x06, obj.Data[6] = 0x07, obj.Data[7] = 0x08;
 
 	ParseFrame(obj);
