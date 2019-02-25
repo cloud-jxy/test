@@ -143,7 +143,7 @@ void HaideProtocolDialog::OnClose()
 void HaideProtocolDialog::OnBnClickedButtonAdd()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	FrameRuleDialog dlg;
+	FrameRuleDialog dlg(this);
 
 	dlg.m_operate = OperateType::ADD;
 	dlg.m_p_dlg = this;
@@ -175,7 +175,7 @@ void HaideProtocolDialog::OnBnClickedButtonEdit()
 		return;
 	}
 
-	FrameRuleDialog dlg;
+	FrameRuleDialog dlg(this);
 
 	dlg.m_operate = OperateType::EDIT;
 	dlg.m_p_dlg = this;
