@@ -16,11 +16,14 @@ IMPLEMENT_DYNAMIC(HaideProtocolDialog, CDialogEx)
 HaideProtocolDialog::HaideProtocolDialog(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_HAIDE_PROTOCOL_DIALOG, pParent)
 {
-
+	if (!m_app.CreateDispatch(_T("Excel.Application"))) {
+		MessageBox(_T("无法创建Excel应用"));
+	}
 }
 
 HaideProtocolDialog::~HaideProtocolDialog()
 {
+	m_app.Quit();
 }
 
 void HaideProtocolDialog::DoDataExchange(CDataExchange* pDX)
@@ -49,9 +52,9 @@ BOOL HaideProtocolDialog::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+
 	m_ctrl_list.InsertColumn(0, _T("数据项名称"), 0, 175);
 	m_ctrl_list.InsertColumn(1, _T("解析结果"), 0, 80);
-
 	m_ctrl_list.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
 
 	m_groups = new CStringArray();
@@ -248,7 +251,6 @@ void HaideProtocolDialog::OnBnClickedButtonImport()
 	if (nResponse == IDOK) {
 		CString fileName = dlg.GetPathName();
 
-		CApplication app;
 		CWorkbooks books;
 		CWorkbook book;
 		CWorksheets sheets;
@@ -260,12 +262,7 @@ void HaideProtocolDialog::OnBnClickedButtonImport()
 
 		int i;
 
-		if (!app.CreateDispatch(_T("Excel.Application"))) {
-			MessageBox(_T("无法创建Excel应用"));
-			return;
-		}
-
-		books.AttachDispatch(app.get_Workbooks(), TRUE);
+		books.AttachDispatch(m_app.get_Workbooks(), TRUE);
 		lpDisp = books.Open(fileName
 			, _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing)
 			, _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing), _variant_t(vtMissing)
@@ -298,6 +295,10 @@ void HaideProtocolDialog::OnBnClickedButtonImport()
 		for (i = 1; i < lgUsedRowNum; i++) {
 			ReadExcelRow(i, range);
 		}
+
+		// 释放资源
+		range.ReleaseDispatch();
+
 	}
 }
 
@@ -431,4 +432,13 @@ void HaideProtocolDialog::OnBnClickedButtonExport()
 		obj.Data[4] = 0x05, obj.Data[5] = 0x06, obj.Data[6] = 0x07, obj.Data[7] = 0x08;
 
 	ParseFrame(obj);
+}
+
+
+
+BOOL HaideProtocolDialog::DestroyWindow()
+{
+	// TODO: 在此添加专用代码和/或调用基类
+
+	return CDialogEx::DestroyWindow();
 }

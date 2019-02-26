@@ -59,4 +59,7 @@ public:
 	CString GetExcelText(CRange cell);
 	double GetExcelVal(int row, int col, CRange range);
 	void AddToListCtrl(FrameRuleObj *obj);
+
+	CApplication m_app;
+	virtual BOOL DestroyWindow();
 };
