@@ -332,11 +332,14 @@ BOOL HaideProtocolDialog::IsGroupHeaderRow(int row, CRange range) {
 // col从1起
 CString HaideProtocolDialog::GetExcelText(int row, int col, CRange range) {
 	CRange oCurCell;
+	CString ret;
 	
 	oCurCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
 		COleVariant((long)col)).pdispVal, TRUE);
+	ret = oCurCell.get_Text().bstrVal;
+	oCurCell.ReleaseDispatch();
 
-	return oCurCell.get_Text().bstrVal;
+	return ret;
 }
 
 
@@ -352,8 +355,9 @@ double HaideProtocolDialog::GetExcelVal(int row, int col, CRange range) {
 	oCurCell.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
 		COleVariant((long)col)).pdispVal, TRUE);
 	str = oCurCell.get_Text().bstrVal;
-
 	ret = atof(str.GetBuffer(0));
+	oCurCell.ReleaseDispatch();
+
 	return ret;
 }
 
@@ -403,6 +407,7 @@ void HaideProtocolDialog::ReadExcelRow(int row, CRange range) {
 	cellGroup.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
 		COleVariant((long)1)).pdispVal, TRUE);
 	strGroupName = cellGroup.get_Text().bstrVal;
+	cellGroup.ReleaseDispatch();
 	
 	if (IsGroupHeaderRow(row, range)) {
 		// 处理分组头
@@ -415,6 +420,7 @@ void HaideProtocolDialog::ReadExcelRow(int row, CRange range) {
 	cellName.AttachDispatch(range.get_Item(COleVariant((long)(row + 1)),
 		COleVariant((long)2)).pdispVal, TRUE);
 	strName = cellName.get_Text().bstrVal;
+	cellName.ReleaseDispatch();
 
 	if (!strName.IsEmpty()) {
 		// 不为空，即认定是规则解析项
