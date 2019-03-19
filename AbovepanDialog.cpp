@@ -7,6 +7,7 @@
 #include "afxdialogex.h"
 #include "AbovepanData.h"
 #include "ParseDialog.h"
+#include "NavigationDialog.h"
 
 // CAbovepanDialog 对话框
 
@@ -129,7 +130,7 @@ void CAbovepanDialog::OnDestroy()
 	CParseDialog::OnDestroy();
 
 	// TODO: 在此处添加消息处理程序代码
-	m_tab.MyDeleteAllItems();
+	//m_tab.MyDeleteAllItems();
 }
 
 
@@ -260,6 +261,21 @@ void CAbovepanDialog::OnClose()
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 
-	CParseDialog::OnClose();
 	m_tab.MyDeleteAllItems();
+
+	CParseDialog::OnClose();
+	PostNcDestroy();
+}
+
+
+void CAbovepanDialog::PostNcDestroy()
+{
+	// TODO: 在此添加专用代码和/或调用基类
+
+	CParseDialog::PostNcDestroy();
+
+	NavigationDialog *dlg = (NavigationDialog *)this->GetParent();
+	dlg->m_abovepanDlg = NULL;
+
+	delete this;
 }

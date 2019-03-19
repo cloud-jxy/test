@@ -43,4 +43,5 @@ public:
 	CStatic m_stTitle;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnClose();
+	virtual void PostNcDestroy();
 };

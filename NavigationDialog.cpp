@@ -86,11 +86,26 @@ void NavigationDialog::OnBnClickedButtonCar()
 void NavigationDialog::OnBnClickedButtonAbovePan()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	CAbovepanDialog *dlg = new CAbovepanDialog();
-	dlg->Create(IDD_ABOVEPAN_DIALOG, this);
-	dlg->ShowWindow(SW_SHOW);
+	if (0) {
+		// 模态
+		CAbovepanDialog dlg;
+		//dlg.Create(IDD_ABOVEPAN_DIALOG, this);
 
-	//CXSCBaseDialog *dlg = new CXSCBaseDialog();
-	//dlg->Create(IDD_XSC_BASE_DIALOG, this);
-	//dlg->ShowWindow(SW_SHOW);
+		ShowWindow(SW_HIDE);
+		dlg.DoModal();
+		ShowWindow(SW_SHOW);
+	}
+	else {
+		// 非模态
+		if (m_abovepanDlg == NULL) {
+			m_abovepanDlg = new CAbovepanDialog();
+			m_abovepanDlg->Create(IDD_ABOVEPAN_DIALOG, this);
+		}
+		m_abovepanDlg->ShowWindow(SW_SHOW);
+
+		/*CAbovepanDialog *dlg = new CAbovepanDialog();
+		dlg->Create(IDD_ABOVEPAN_DIALOG, this);
+		dlg->ShowWindow(SW_SHOW);*/
+
+	}
 }
