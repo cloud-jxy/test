@@ -162,7 +162,34 @@
     <ClCompile Include="AbovepanDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XSCBaseDialog.cpp">
+    <ClCompile Include="xsc\XSCBaseDialog.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTabCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTabDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AbovepanData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticItemObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xsc\XSCScreenDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xsc\XSCControlDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xsc\XSCYuyinDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xsc\XSCFujiDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -379,7 +406,37 @@
     <ClInclude Include="AbovepanDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="XSCBaseDialog.h">
+    <ClInclude Include="AbovepanData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xsc\XSCBaseDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTabCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTabDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStaticItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticItemObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xsc\XSCScreenDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xsc\XSCControlDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xsc\XSCYuyinDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xsc\XSCFujiDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

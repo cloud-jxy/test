@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "test.h"
 #include "testDlg.h"
+#include "AbovepanData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,5 +73,16 @@ BOOL CTestApp::InitInstance()
 
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
+
+	int i = 0;
+	for (i = 0; i < g_abovepanItemCount; i++) {
+		AbovepanItemObj *item = &g_abovepanItemObjs[i];
+
+		int j = 0;
+		for (j = 0; j < item->m_len; j++) {
+			delete item->m_pObjs[j].m_pDialog;
+		}
+	}
+
 	return FALSE;
 }
