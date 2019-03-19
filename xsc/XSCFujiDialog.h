@@ -20,4 +20,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CString CXSCFujiDialog::YuredengToString(double val);
+	CString CXSCFujiDialog::JiyouyaliToString(double val);
 };
