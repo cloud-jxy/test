@@ -42,4 +42,5 @@ public:
 	void InsetToTab(AbovepanItemObj* item, int index = 0);
 	CStatic m_stTitle;
 	afx_msg void OnBnClickedButton1();
+	afx_msg void OnClose();
 };

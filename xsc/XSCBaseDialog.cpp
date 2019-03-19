@@ -134,6 +134,13 @@ CString CXSCBaseDialog::CheXingToString(double val) {
 int CXSCBaseDialog::ParseFrame(VCI_CAN_OBJ frame) {
 	TRACE("CXSCBaseDialog::ParseFrame\n");
 	CMyTabDialog::ParseFrame(frame);
+	BOOL isDebug;
+
+#ifdef DEBUG
+	isDebug = TRUE;
+#else
+	isDebug = FALSE;
+#endif
 
 	if (frame.ID == 0x18f40001) {
 		memcpy(m_szXinghao, frame.Data, 8);
@@ -142,7 +149,7 @@ int CXSCBaseDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		CStaticItem *item = (CStaticItem *)g_xscBase[0].m_pParam;
 		item->m_ctrlValue.SetWindowText(tmp);
 	}
-	else if (frame.ID = 0x18f4002) {
+	else if (frame.ID == 0x18f4002) {
 		memcpy(m_szXinghao + 8, frame.Data, 8);
 		CString tmp;
 		tmp.Format(_T("%s"), m_szXinghao);

@@ -45,6 +45,7 @@ BOOL CMyTabDialog::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+
 	CreateCtrl();
 	SetCtrlRect();
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -151,6 +152,12 @@ int CMyTabDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		if (ptr == NULL) {
 			continue;
 		}
+
+#ifndef DEBUG
+		if (item->IsSameId(frame.ID) == FALSE) {
+			continue;
+		}
+#endif // !DEBUG
 
 		d_result = item->Calculate(frame.Data);
 		str_result = (this->*ptr)(d_result);

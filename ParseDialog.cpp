@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "ParseDialog.h"
 #include <set>
+#include "resource.h"
 using namespace std;
 
 set<CParseDialog *> g_listeners;
 
 CParseDialog::CParseDialog()
 {
+
 }
 
 
@@ -76,6 +78,10 @@ BOOL CParseDialog::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	HICON m_hIcon;
+	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	SetIcon(m_hIcon, FALSE);
+
 	SetCtrlRect();
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE

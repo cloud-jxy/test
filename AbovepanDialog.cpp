@@ -6,10 +6,11 @@
 #include "AbovepanDialog.h"
 #include "afxdialogex.h"
 #include "AbovepanData.h"
+#include "ParseDialog.h"
 
 // CAbovepanDialog 对话框
 
-IMPLEMENT_DYNAMIC(CAbovepanDialog, CParseDialog)
+IMPLEMENT_DYNAMIC(CAbovepanDialog, CDialogEx)
 
 CAbovepanDialog::CAbovepanDialog(CWnd* pParent /*=NULL*/)
 	: CParseDialog(IDD_ABOVEPAN_DIALOG, pParent)
@@ -38,6 +39,7 @@ BEGIN_MESSAGE_MAP(CAbovepanDialog, CParseDialog)
 	ON_WM_SIZE()
 	ON_WM_SYSCOMMAND()
 	ON_BN_CLICKED(IDC_BUTTON1, &CAbovepanDialog::OnBnClickedButton1)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -72,6 +74,13 @@ BOOL CAbovepanDialog::OnInitDialog()
 	m_list.SetItemState(0, LVIS_SELECTED | LVIS_FOCUSED, LVIS_SELECTED | LVIS_FOCUSED);
 	m_list.SetFocus();
 	InsetToTab(&g_abovepanItemObjs[0]);
+
+#ifdef DEBUG
+	GetDlgItem(IDC_BUTTON1)->ShowWindow(SW_SHOW);
+#else
+	GetDlgItem(IDC_BUTTON1)->ShowWindow(SW_HIDE);
+#endif // DEBUG
+
 
 	return FALSE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
@@ -110,6 +119,8 @@ void CAbovepanDialog::InsetToTab(AbovepanItemObj * item, int index) {
 		m_tab.MyInsertItem(tabs[i].m_name, tabs[i].m_pDialog, tabs[i].m_dlgID);
 		tabs[i].m_pDialog->ShowWindow(i == index ? SW_SHOW : SW_HIDE);
 	}
+
+	m_tab.SetCurSel(index);
 }
 
 
@@ -238,8 +249,17 @@ void CAbovepanDialog::OnBnClickedButton1()
 	VCI_CAN_OBJ frame;
 	frame.DataLen = 8;
 	frame.ID = 0x18f40003;
-	frame.Data[0] = 0x00, frame.Data[1] = 0x01, frame.Data[2] = 0x02, frame.Data[3] = 0x03;
-	frame.Data[4] = 0x04, frame.Data[5] = 0x05, frame.Data[6] = 0x06, frame.Data[7] = 0x07;
+	frame.Data[0] = 0x30, frame.Data[1] = 0x31, frame.Data[2] = 0x32, frame.Data[3] = 0x33;
+	frame.Data[4] = 0x34, frame.Data[5] = 0x35, frame.Data[6] = 0x36, frame.Data[7] = 0x37;
 
 	ParseFrame(frame);
+}
+
+
+void CAbovepanDialog::OnClose()
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+
+	CParseDialog::OnClose();
+	m_tab.MyDeleteAllItems();
 }
