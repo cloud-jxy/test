@@ -3,6 +3,7 @@
 #include "ControlCAN.h"
 #include "afxcmn.h"
 #include "MyTabCtrl.h"
+#include "afxwin.h"
 
 struct AbovepanItemObj;
 
@@ -38,4 +39,5 @@ public:
 	afx_msg void OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult);
 
 	void InsetToTab(AbovepanItemObj* item, int index = 0);
+	CStatic m_stTitle;
 };

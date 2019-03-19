@@ -26,6 +26,7 @@ void CAbovepanDialog::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_list);
 	DDX_Control(pDX, IDC_TAB1, m_tab);
+	DDX_Control(pDX, IDC_STATIC_TITLE, m_stTitle);
 }
 
 
@@ -138,16 +139,25 @@ void CAbovepanDialog::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
 void CAbovepanDialog::SetCtrlRect() {
 	//TRACE("SetCtrlRect\n");
 	// »ñÈ¡dialog rect
-	CRect rect;
+	CRect rect, rectTitle, r;
 	GetWindowRect(&rect);
-	ScreenToClient(&rect);
+	m_stTitle.GetWindowRect(&rectTitle);
 
-	CRect r;
+	int topDiff = 8;
+
+	ScreenToClient(&rect);
+	m_stTitle.ScreenToClient(&rectTitle);
+
+	rectTitle.top += topDiff;
+	rectTitle.bottom += topDiff;
+	rectTitle.right = rect.right;
+	m_stTitle.MoveWindow(rectTitle);
+
 
 	//×ó²àlistCtrl
 	r.left = rect.left + 10;
 	r.right = rect.left + m_listW;
-	r.top = rect.top + 55;
+	r.top = rectTitle.bottom + 5;
 	r.bottom = rect.bottom - 10;
 	m_list.MoveWindow(r);
 
