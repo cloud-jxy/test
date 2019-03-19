@@ -11,7 +11,7 @@ StaticItemObj::~StaticItemObj()
 {
 }
 
-StaticItemObj::StaticItemObj(CString strKey, CString strValue, CString strID, int startByte, int startBite, int biteLen, FuncToString func, double ratio, double offset) {
+StaticItemObj::StaticItemObj(CString strKey, CString strValue, CString strID, int startByte, int startBite, int biteLen, PtrFuncToString func, double ratio, double offset) {
 	m_strKey = strKey;
 	m_strValue = strValue ? strValue : _T("Î´¼ì²âµ½");
 	m_strID = strID;
@@ -20,6 +20,7 @@ StaticItemObj::StaticItemObj(CString strKey, CString strValue, CString strID, in
 	m_biteLen = biteLen;
 	m_ratio = ratio;
 	m_offset = offset;
+	m_pFuncToString = func;
 }
 
 static unsigned char GetFlag(int bite_len) {

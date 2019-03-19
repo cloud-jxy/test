@@ -136,6 +136,52 @@ void CMyTabDialog::SetCtrlRect() {
 }
 
 
+int CMyTabDialog::ParseFrame(VCI_CAN_OBJ frame) {
+	int i = 0;
+	StaticItemObj *item;
+	CStaticItem *itemCtrl;
+	double d_result;
+	CString str_result;
+	PtrFuncToString ptr;
+
+	for (i = 0; i < m_objCount; i++) {
+		item = &m_objs[i];
+		ptr = item->m_pFuncToString;
+
+		if (ptr == NULL) {
+			continue;
+		}
+
+		d_result = item->Calculate(frame.Data);
+		str_result = (this->*ptr)(d_result);
+
+		// TRACE("CXSCBaseDialog::ParseFrame: %f, %s\n", d_result, str_result);
+
+		itemCtrl = (CStaticItem *)item->m_pParam;
+		itemCtrl->m_ctrlValue.SetWindowText(str_result);
+	}
+
+	return 0;
+}
+
+CString CMyTabDialog::OpenOrClose(double val) {
+	if (val == 0) {
+		return _T("关闭");
+	}
+	else if (val == 1) {
+		return _T("开启");
+	}
+	else {
+		return _T("数据异常");
+	}
+}
+
+CString CMyTabDialog::ValueToString(double val) {
+	CString ret;
+	ret.Format(_T("%g"), val);
+	return ret;
+}
+
 int CMyTabDialog::GetcolCount() {
 	CRect r;
 	GetParent()->GetWindowRect(&r);

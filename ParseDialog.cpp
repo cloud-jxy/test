@@ -32,6 +32,10 @@ END_MESSAGE_MAP()
 void CParseDialog::SetCtrlRect() {
 }
 
+int CParseDialog::ParseFrame(VCI_CAN_OBJ obj) {
+	return 0;
+}
+
 void CParseDialog::OnSizing(UINT fwSide, LPRECT pRect)
 {
 	CDialogEx::OnSizing(fwSide, pRect);

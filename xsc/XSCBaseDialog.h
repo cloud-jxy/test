@@ -22,4 +22,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL OnInitDialog();
+	virtual int ParseFrame(VCI_CAN_OBJ);
+
+	CString OpenOrClose(double val);
+	CString XileiToString(double val);
+	CString CheXingToString(double val);
 };

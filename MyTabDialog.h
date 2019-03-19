@@ -1,6 +1,7 @@
 #pragma once
 #include "StaticItem.h"
 #include "StaticItemObj.h"
+#include "ControlCAN.h"
 
 // CMyTabDialog ¶Ô»°¿ò
 
@@ -34,6 +35,11 @@ public:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 
 	void SetCtrlRect();
+	virtual int ParseFrame(VCI_CAN_OBJ frame);
+
+	CString OpenOrClose(double val);
+	CString ValueToString(double val);
+
 	int GetcolCount();
 	void CreateCtrl();
 };

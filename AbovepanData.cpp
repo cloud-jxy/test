@@ -5,6 +5,8 @@
 #include "xsc\XSCControlDialog.h"
 #include "xsc\XSCYuyinDialog.h"
 #include "xsc\XSCFujiDialog.h"
+#include "AbovepanDialog.h"
+
 
 AbovepanTabItemObj g_xscTabItemObjs[] = {
 	{ _T("基本信息"), new CXSCBaseDialog(), IDD_EMPTY_DIALOG }
@@ -16,9 +18,9 @@ AbovepanTabItemObj g_xscTabItemObjs[] = {
 
 
 AbovepanTabItemObj g_xscTabItemObjs2[] = {
-	{ _T("基本信息2"), new CXSCBaseDialog(), IDD_XSC_BASE_DIALOG }
-	,{ _T("显示屏2"), new CXSCBaseDialog(), IDD_XSC_BASE_DIALOG }
-	,{ _T("控制器2"), new CXSCBaseDialog(), IDD_XSC_BASE_DIALOG }
+	{ _T("基本信息2"), new CXSCYuyinDialog(), IDD_EMPTY_DIALOG }
+	,{ _T("显示屏2"), new CXSCFujiDialog(), IDD_EMPTY_DIALOG }
+	,{ _T("控制器2"), new CXSCBaseDialog(), IDD_EMPTY_DIALOG }
 };
 
 AbovepanItemObj g_abovepanItemObjs[] = {

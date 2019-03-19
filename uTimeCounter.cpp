@@ -45,5 +45,5 @@ void uTimeCounter::Leave( char* file, int line )
     QueryPerformanceCounter(&large_interger);  
     m_c2 = large_interger.QuadPart;
 
-    odprintf( "%s(%d):Using time: %0.3lf us\n", file, line, (m_c2 - m_c1)* 1000000 / m_dff );
+    //odprintf( "%s(%d):Using time: %0.3lf us\n", file, line, (m_c2 - m_c1)* 1000000 / m_dff );
 }

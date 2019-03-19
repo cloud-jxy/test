@@ -28,16 +28,18 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	int ParseFrame(VCI_CAN_OBJ obj) { return 0; }
 	CListCtrl m_list;
 	int m_listW;
 	CMyTabCtrl m_tab;
 	virtual BOOL OnInitDialog();
+	virtual int ParseFrame(VCI_CAN_OBJ obj);
 	virtual void SetCtrlRect();
+
 	afx_msg void OnNMClickList1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDestroy();
 	afx_msg void OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult);
 
 	void InsetToTab(AbovepanItemObj* item, int index = 0);
 	CStatic m_stTitle;
+	afx_msg void OnBnClickedButton1();
 };

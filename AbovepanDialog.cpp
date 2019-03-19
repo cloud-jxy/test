@@ -9,7 +9,7 @@
 
 // CAbovepanDialog 对话框
 
-IMPLEMENT_DYNAMIC(CAbovepanDialog, CDialogEx)
+IMPLEMENT_DYNAMIC(CAbovepanDialog, CParseDialog)
 
 CAbovepanDialog::CAbovepanDialog(CWnd* pParent /*=NULL*/)
 	: CParseDialog(IDD_ABOVEPAN_DIALOG, pParent)
@@ -23,20 +23,21 @@ CAbovepanDialog::~CAbovepanDialog()
 
 void CAbovepanDialog::DoDataExchange(CDataExchange* pDX)
 {
-	CDialogEx::DoDataExchange(pDX);
+	CParseDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_list);
 	DDX_Control(pDX, IDC_TAB1, m_tab);
 	DDX_Control(pDX, IDC_STATIC_TITLE, m_stTitle);
 }
 
 
-BEGIN_MESSAGE_MAP(CAbovepanDialog, CDialogEx)
+BEGIN_MESSAGE_MAP(CAbovepanDialog, CParseDialog)
 	ON_NOTIFY(NM_CLICK, IDC_LIST1, &CAbovepanDialog::OnNMClickList1)
 	ON_WM_DESTROY()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CAbovepanDialog::OnTcnSelchangeTab1)
 	ON_WM_SIZING()
 	ON_WM_SIZE()
 	ON_WM_SYSCOMMAND()
+	ON_BN_CLICKED(IDC_BUTTON1, &CAbovepanDialog::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -206,4 +207,39 @@ next:
 
 	// 顶部标题
 
+}
+
+int CAbovepanDialog::ParseFrame(VCI_CAN_OBJ frame) {
+	POSITION pos = m_list.GetFirstSelectedItemPosition();
+	int nItem = 0;
+	if (pos == NULL) {
+		return 0;
+
+	}
+	else
+	{
+		nItem = m_list.GetNextSelectedItem(pos);
+	}
+
+	int count = m_tab.GetItemCount();
+	int i = 0;
+
+	for (i = 0; i < count; i++) {
+		CMyTabDialog *dlg = (CMyTabDialog *)m_tab.GetItemData(i);
+		dlg->ParseFrame(frame);
+	}
+
+	return 0;
+}
+
+void CAbovepanDialog::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	VCI_CAN_OBJ frame;
+	frame.DataLen = 8;
+	frame.ID = 0x18f40003;
+	frame.Data[0] = 0x00, frame.Data[1] = 0x01, frame.Data[2] = 0x02, frame.Data[3] = 0x03;
+	frame.Data[4] = 0x04, frame.Data[5] = 0x05, frame.Data[6] = 0x06, frame.Data[7] = 0x07;
+
+	ParseFrame(frame);
 }
