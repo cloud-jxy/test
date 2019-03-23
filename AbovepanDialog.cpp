@@ -254,6 +254,8 @@ void CAbovepanDialog::OnBnClickedButton1()
 	frame.Data[4] = 0x34, frame.Data[5] = 0x35, frame.Data[6] = 0x36, frame.Data[7] = 0x37;
 
 	ParseFrame(frame);
+
+	GetDlgItem(IDC_BUTTON1)->ShowWindow(SW_HIDE);
 }
 
 
