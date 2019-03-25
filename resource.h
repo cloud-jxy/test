@@ -42,6 +42,7 @@
 #define IDD_DIALOG5                     179
 #define IDD_XSC_FUJI_DIALOG             179
 #define IDD_EMPTY_DIALOG                180
+#define IDD_COM_HT_DIALOG               181
 #define IDC_COMBO_PORT                  1001
 #define IDC_COMBO_INDEX                 1001
 #define IDC_COMBO_BAUD                  1002
@@ -192,6 +193,10 @@
 #define IDC_STATIC_YAOKONG2             1121
 #define IDC_STATIC_DIANJI2              1122
 #define IDC_STATIC_XINGHAO              1123
+#define IDC_BUTTON_COM_OPEN             1124
+#define IDC_CHECK4                      1126
+#define IDC_COMBO_COM_PORT              1127
+#define IDC_COMBO_COM_PORT2             1128
 #define IDC_EDIT_CODE                   3001
 #define IDC_EDIT_MASK                   3002
 #define IDC_COMBO_FILTERTYPE            3003
@@ -204,9 +209,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        176
+#define _APS_NEXT_RESOURCE_VALUE        183
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1124
+#define _APS_NEXT_CONTROL_VALUE         1128
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

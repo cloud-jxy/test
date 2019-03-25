@@ -1,4 +1,5 @@
 ﻿#include "SerialPortWinBase.h"
+#include "stdafx.h"
 
 #include <iostream>
 

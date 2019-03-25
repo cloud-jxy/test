@@ -10,6 +10,7 @@
 #include "ParseDialog.h"
 #include <set>
 #include "CSerialPort\SerialPort.h"
+#include "COMHTDialog.h"
 using namespace itas109;
 using namespace std;
 
@@ -149,6 +150,7 @@ BEGIN_MESSAGE_MAP(CTestDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_CLEAR, &CTestDlg::OnBnClickedButtonClear)
 	ON_BN_CLICKED(IDC_CHECK3, &CTestDlg::OnBnClickedCheck3)
 	ON_BN_CLICKED(IDC_BUTTON_COM_OPEN, &CTestDlg::OnBnClickedButtonComOpen)
+	ON_BN_CLICKED(IDC_BUTTON1, &CTestDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -910,18 +912,25 @@ void CTestDlg::OnBnClickedButtonComOpen()
 		MessageBox(_T("端口打开失败"));
 		return;
 	}
-
-	SetSerialPort(&m_sp);
-	//m_sp.readReady.connect(this, &CTestDlg::OnCOMRecv);
-	m_sp.readReady.connect((HTSlot *)this, &HTSlot::OnCOMRecv);
 }
 
-void CTestDlg::OnCOMRecvHT(int h, int t) {
-	HTSlot::OnCOMRecvHT(h, t);
-	TRACE("child: h= %d, t=%d\n", h, t);
-}
+//void CTestDlg::OnCOMRecvHT(int h, int t) {
+//	HTSlot::OnCOMRecvHT(h, t);
+//	TRACE("child: h= %d, t=%d\n", h, t);
+//}
+//
+//void CTestDlg::OnCOMRecv() {
+//	HTSlot::OnCOMRecv();
+//	TRACE("child: OnCOMRecv\n");
+//}
 
-void CTestDlg::OnCOMRecv() {
-	HTSlot::OnCOMRecv();
-	TRACE("child: OnCOMRecv\n");
+
+void CTestDlg::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CCOMHTDialog *dlg = new CCOMHTDialog();
+	dlg->Create(IDD_COM_HT_DIALOG, this);
+	dlg->SetSerialPort(&m_sp);
+	m_sp.readReady.connect(dlg, &CCOMHTDialog::OnCOMRecv);
+	dlg->ShowWindow(SW_SHOW);
 }

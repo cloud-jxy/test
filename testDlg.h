@@ -104,8 +104,9 @@ public:
 	afx_msg void OnBnClickedButtonComOpen();
 
 	CSerialPort m_sp;
-	void OnCOMRecv();
-	void OnCOMRecvHT(int h, int t);
+	//void OnCOMRecv();
+	//void OnCOMRecvHT(int h, int t);
+	afx_msg void OnBnClickedButton1();
 };
 
 //{{AFX_INSERT_LOCATION}}
