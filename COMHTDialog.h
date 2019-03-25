@@ -35,9 +35,14 @@ public:
 	CChartCtrl m_chart;
 	virtual BOOL OnInitDialog();
 
-	double *m_x;
-	double *m_y;
+	double m_x[100];
+	double m_y[100];
+
+	double m_oldX[100];
+	double m_oldY[100];
+
 	int m_count;
 	int m_ArrayLen;
 	long m_timeFirst;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

@@ -19,9 +19,6 @@ CCOMHTDialog::CCOMHTDialog(CWnd* pParent /*=NULL*/)
 {
 	m_count = 0;
 	m_ArrayLen = 100;
-
-	m_x = (double *)malloc(sizeof(double) * m_ArrayLen);
-	m_y = (double *)malloc(sizeof(double) * m_ArrayLen);
 }
 
 CCOMHTDialog::~CCOMHTDialog()
@@ -38,6 +35,7 @@ void CCOMHTDialog::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CCOMHTDialog, CDialogEx)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -45,8 +43,6 @@ END_MESSAGE_MAP()
 
 void CCOMHTDialog::OnCOMRecvHT(int h, int t) {
 	HTSlot::OnCOMRecvHT(h, t);
-	double *oldX = NULL;
-	double *oldY = NULL;
 	int index = m_count;
 	int dataLen = m_count + 1;
 
@@ -58,38 +54,19 @@ void CCOMHTDialog::OnCOMRecvHT(int h, int t) {
 
 	m_count++;
 	if (m_count > m_ArrayLen) {
-		oldX = m_x;
-		oldY = m_y;
+		memcpy(m_oldX, m_x, sizeof(double) * m_ArrayLen);
+		memcpy(m_oldY, m_y, sizeof(double) * m_ArrayLen);
 
-		m_x = (double *)malloc(sizeof(double) * m_ArrayLen);
-		m_y = (double *)malloc(sizeof(double) * m_ArrayLen);
-
-		memcpy(m_x, oldX + 1, sizeof(double) * (m_ArrayLen - 1));
-		memcpy(m_y, oldY + 1, sizeof(double) * (m_ArrayLen - 1));
+		memcpy(m_x, m_oldX + 1, sizeof(double) * (m_ArrayLen - 1));
+		memcpy(m_y, m_oldY + 1, sizeof(double) * (m_ArrayLen - 1));
 
 		index = m_ArrayLen - 1;
 		dataLen = m_ArrayLen;
 	}
 
-	// 刷新chart
-	m_chart.EnableRefresh(false);
-	m_chart.RemoveAllSeries();
-
 	double diff = ms - m_timeFirst;
 	m_x[index] = diff / 1000;
 	m_y[index] = 100 * (double)t / (double)h;
-
-	TRACE("%d: (%g, %g)\n", m_count, m_x[index], m_y[index]);
-
-	CChartLineSerie *pLineSerie = m_chart.CreateLineSerie();
-	pLineSerie->SetSeriesOrdering(poXOrdering);
-	pLineSerie->AddPoints(m_x, m_y, dataLen);
-
-	m_chart.GetLegend()->SetVisible(true);
-	m_chart.EnableRefresh(true);
-
-	if (oldX) free(oldX);
-	if (oldY) free(oldY);
 }
 
 
@@ -112,10 +89,37 @@ BOOL CCOMHTDialog::OnInitDialog()
 	CChartStandardAxis *pLeftAxis = m_chart.CreateStandardAxis(CChartCtrl::LeftAxis);
 	pLeftAxis->SetMinMax(0, 100);
 	pLeftAxis->SetAutomatic(false);
+	pLeftAxis->GetLabel()->SetText(_T("电压百分比"));
 	//pLeftAxis->SetAutomaticMode(CChartAxis::FullAutomatic);
 
 	//m_chart.GetTitle()->AddString(_T("电压"));
 
+	SetTimer(1, 100, NULL);
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void CCOMHTDialog::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (nIDEvent == 1) {
+
+		if (m_count == 0) {
+			return;
+		}
+
+		// 刷新chart
+		m_chart.EnableRefresh(false);
+		m_chart.RemoveAllSeries();
+
+		CChartLineSerie *pLineSerie = m_chart.CreateLineSerie();
+		pLineSerie->SetSeriesOrdering(poXOrdering);
+		pLineSerie->AddPoints(m_x, m_y, (m_count > 100) ? 100 : m_count);
+
+		m_chart.GetLegend()->SetVisible(true);
+		m_chart.EnableRefresh(true);
+	}
+
+	__super::OnTimer(nIDEvent);
 }
