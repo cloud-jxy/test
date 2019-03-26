@@ -19,8 +19,9 @@
 #include "CSerialPort\SerialPort.h"
 #include "HTSlot.h"
 
-using namespace itas109;
 
+#define SP_NUM 6
+using namespace itas109;
 class CInfoDialog;
 
 class CTestDlg : public CDialog, public HTSlot
@@ -103,10 +104,14 @@ public:
 	CString m_strCOMPort;
 	afx_msg void OnBnClickedButtonComOpen();
 
-	CSerialPort m_sp;
+	//CSerialPort m_sp;
 	//void OnCOMRecv();
 	//void OnCOMRecvHT(int h, int t);
 	afx_msg void OnBnClickedButton1();
+	CComboBox m_cbxCOM;
+	CSerialPort m_arraySp[SP_NUM];
+	CDialog *m_arrayCOMDlg[SP_NUM];
+	afx_msg void OnCbnSelchangeComboComPort();
 };
 
 //{{AFX_INSERT_LOCATION}}

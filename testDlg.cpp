@@ -11,6 +11,8 @@
 #include <set>
 #include "CSerialPort\SerialPort.h"
 #include "COMHTDialog.h"
+#include "CSerialPort\EnumSerial.h"
+
 using namespace itas109;
 using namespace std;
 
@@ -128,6 +130,7 @@ void CTestDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_BAUDRATE, m_cbxBaudrate);
 	DDX_Control(pDX, IDC_BUTTON_COM_OPEN, m_btnCOMOpen);
 	DDX_CBString(pDX, IDC_COMBO_COM_PORT, m_strCOMPort);
+	DDX_Control(pDX, IDC_COMBO_COM_PORT, m_cbxCOM);
 }
 
 BEGIN_MESSAGE_MAP(CTestDlg, CDialog)
@@ -151,6 +154,7 @@ BEGIN_MESSAGE_MAP(CTestDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK3, &CTestDlg::OnBnClickedCheck3)
 	ON_BN_CLICKED(IDC_BUTTON_COM_OPEN, &CTestDlg::OnBnClickedButtonComOpen)
 	ON_BN_CLICKED(IDC_BUTTON1, &CTestDlg::OnBnClickedButton1)
+	ON_CBN_SELCHANGE(IDC_COMBO_COM_PORT, &CTestDlg::OnCbnSelchangeComboComPort)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -178,6 +182,15 @@ BOOL CTestDlg::OnInitDialog()
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
+	int i = 0;
+	for (i = 0; i < SP_NUM; i++) {
+		CString tmp;
+		tmp.Format(_T("COM%d"), i + 1);
+		m_cbxCOM.AddString(tmp);
+		m_arraySp[i].init(tmp.GetBuffer(0));
+		m_arrayCOMDlg[i] = NULL;
+	}
+
 	CMenu* pSysMenu = GetSystemMenu(FALSE);
 	if (pSysMenu != NULL)
 	{
@@ -204,7 +217,6 @@ BOOL CTestDlg::OnInitDialog()
 	m_EditSendData="01 02 03 04 05 06 07 08 ";
 	
 	CString str;
-	int i = 0;
 	
 	str = "USBCAN-I";
 	m_ComboDevType.AddString(str);
@@ -899,18 +911,40 @@ void CTestDlg::OnBnClickedButtonClear()
 }
 
 
+//CArray<SSerInfo, SSerInfo&> m_asi;
+//
+//// Populate the list of serial ports.
+//EnumSerialPorts(m_asi, FALSE/*include all*/);
+//for (int ii = 0; ii<m_asi.GetSize(); ii++) {
+//	TRACE("%s: %s %s %s\n", m_asi[ii].strFriendlyName, m_asi[ii].strPortName, m_asi[ii].strPortDesc, m_asi[ii].strDevPath);
+//	m_cbxCOM.AddString(m_asi[ii].strFriendlyName);
+//}
+
 void CTestDlg::OnBnClickedButtonComOpen()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//UpdateData(TRUE);
 	BOOL result;
-	CString tmp = _T("COM5");
-	//std::string com = _T("COM5");
-	m_sp.init(_T("COM5"));
-	result = m_sp.open();
+	CString status;
+	int sel = m_cbxCOM.GetCurSel();
+	CSerialPort *sp = &m_arraySp[sel];
 
-	if (!result) {
-		MessageBox(_T("端口打开失败"));
-		return;
+	GetDlgItem(IDC_BUTTON_COM_OPEN)->GetWindowText(status);
+	if (status == _T("打开")) {
+		result = sp->open();
+		std::string name = sp->getPortName();
+
+		if (!result) {
+			MessageBox(_T("端口打开失败"));
+			return;
+		}
+
+		GetDlgItem(IDC_BUTTON_COM_OPEN)->SetWindowText(_T("关闭"));
+	}
+	else {
+		sp->close();
+
+		GetDlgItem(IDC_BUTTON_COM_OPEN)->SetWindowText(_T("打开"));
 	}
 }
 
@@ -928,9 +962,36 @@ void CTestDlg::OnBnClickedButtonComOpen()
 void CTestDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	CCOMHTDialog *dlg = new CCOMHTDialog();
-	dlg->Create(IDD_COM_HT_DIALOG, this);
-	dlg->SetSerialPort(&m_sp);
-	m_sp.readReady.connect(dlg, &CCOMHTDialog::OnCOMRecv);
+	UpdateData(TRUE);
+	int sel = m_cbxCOM.GetCurSel();
+	CSerialPort *sp = &m_arraySp[sel];
+	CCOMHTDialog *dlg = (CCOMHTDialog *)m_arrayCOMDlg[sel];
+
+	if (dlg == NULL) {
+		dlg = new CCOMHTDialog();
+		dlg->Create(IDD_COM_HT_DIALOG, this);
+		dlg->SetSerialPort(sp);
+		sp->readReady.connect(dlg, &CCOMHTDialog::OnCOMRecv);
+		dlg->SetWindowText(m_strCOMPort);
+
+
+		m_arrayCOMDlg[sel] = dlg;
+	}
+
 	dlg->ShowWindow(SW_SHOW);
+}
+
+
+void CTestDlg::OnCbnSelchangeComboComPort()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int sel = m_cbxCOM.GetCurSel();
+	CSerialPort *sp = &m_arraySp[sel];
+
+	if (sp->isOpened()) {
+		GetDlgItem(IDC_BUTTON_COM_OPEN)->SetWindowText(_T("关闭"));
+	}
+	else {
+		GetDlgItem(IDC_BUTTON_COM_OPEN)->SetWindowText(_T("打开"));
+	}
 }

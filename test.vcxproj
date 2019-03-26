@@ -88,7 +88,7 @@
       <ProgramDatabaseFile>.\Release/test.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>ControlCAN.lib;sqlite3.lib;libcserialport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ControlCAN.lib;sqlite3.lib;setupapi.lib;libcserialport.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -131,7 +131,7 @@
       <ProgramDatabaseFile>.\Debug/test.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>ControlCAN.lib;sqlite3.lib;libcserialportd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ControlCAN.lib;sqlite3.lib;setupapi.lib;libcserialportd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -168,6 +168,8 @@
     <ClCompile Include="ChartCtrl_source\ChartSurfaceSerie.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartTitle.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartXYSerie.cpp" />
+    <ClCompile Include="COMHTDialog.cpp" />
+    <ClCompile Include="CSerialPort\EnumSerial.cpp" />
     <ClCompile Include="FrameRuleDialog.cpp" />
     <ClCompile Include="HaideProtocolDialog.cpp" />
     <ClCompile Include="HTSlot.cpp" />
@@ -247,8 +249,10 @@
     <ClInclude Include="ChartCtrl_source\ChartXYSerie.h" />
     <ClInclude Include="ChartCtrl_source\PointsOrdering.h" />
     <ClInclude Include="Cnterior.h" />
+    <ClInclude Include="COMHTDialog.h" />
     <ClInclude Include="ControlCAN.h" />
     <ClInclude Include="CRange.h" />
+    <ClInclude Include="CSerialPort\EnumSerial.h" />
     <ClInclude Include="CSerialPort\osplatformutil.h" />
     <ClInclude Include="CSerialPort\SerialPort.h" />
     <ClInclude Include="CSerialPort\SerialPortBase.h" />

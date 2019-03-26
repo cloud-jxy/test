@@ -11,10 +11,13 @@ void HTSlot::OnCOMRecv() {
 	TRACE("parent: OnCOMRecv\n");
 	int readLen = 1;
 
-	while (readLen > 0) {
+	while (true) {
 		memset(m_curData, 0, 1024);
 		readLen = m_pSerialPort->readData(m_curData, 1024);
 		TRACE("%s\n", m_curData);
+		if (readLen <= 0) {
+			break;
+		}
 		Parse(readLen);
 		//ParseHT(m_curData);
 	}

@@ -81,10 +81,15 @@ BOOL CCOMHTDialog::OnInitDialog()
 	__super::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	HICON m_hIcon;
+	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	SetIcon(m_hIcon, FALSE);
+
 	// 设置chart
 	CChartStandardAxis *pBottomAxis = m_chart.CreateStandardAxis(CChartCtrl::BottomAxis);
 	pBottomAxis->SetAutomatic(true);
 	pBottomAxis->SetTickIncrement(false, 1);
+	pBottomAxis->GetLabel()->SetText(_T("时间（秒）"));
 
 	CChartStandardAxis *pLeftAxis = m_chart.CreateStandardAxis(CChartCtrl::LeftAxis);
 	pLeftAxis->SetMinMax(0, 100);
