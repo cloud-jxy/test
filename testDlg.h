@@ -20,7 +20,7 @@
 #include "HTSlot.h"
 
 
-#define SP_NUM 6
+#define SP_NUM 10
 using namespace itas109;
 class CInfoDialog;
 
@@ -112,6 +112,7 @@ public:
 	CSerialPort m_arraySp[SP_NUM];
 	CDialog *m_arrayCOMDlg[SP_NUM];
 	afx_msg void OnCbnSelchangeComboComPort();
+	virtual BOOL DestroyWindow();
 };
 
 //{{AFX_INSERT_LOCATION}}

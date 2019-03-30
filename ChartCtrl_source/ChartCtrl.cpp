@@ -66,6 +66,7 @@
 #include "ChartBarSerie.h"
 #include "ChartCandlestickSerie.h"
 #include "ChartGanttSerie.h"
+#include "ChartMyTimeAxis.h"
 
 #if _MFC_VER > 0x0600
 #include "atlImage.h"
@@ -274,6 +275,13 @@ void CChartCtrl::ShowMouseCursor(bool bShow)
 CChartStandardAxis* CChartCtrl::CreateStandardAxis(EAxisPos axisPos)
 {
 	CChartStandardAxis* pAxis = new CChartStandardAxis();
+	AttachCustomAxis(pAxis, axisPos);
+	return pAxis;
+}
+
+CChartMyTimeAxis* CChartCtrl::CreateMyTimeAxis(EAxisPos axisPos)
+{
+	CChartMyTimeAxis* pAxis = new CChartMyTimeAxis();
 	AttachCustomAxis(pAxis, axisPos);
 	return pAxis;
 }

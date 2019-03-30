@@ -161,6 +161,7 @@
     <ClCompile Include="ChartCtrl_source\ChartLegend.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartLineSerie.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartLogarithmicAxis.cpp" />
+    <ClCompile Include="ChartCtrl_source\ChartMyTimeAxis.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartPointsSerie.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartScrollBar.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartSerie.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="ChartCtrl_source\ChartLineSerie.h" />
     <ClInclude Include="ChartCtrl_source\ChartLogarithmicAxis.h" />
     <ClInclude Include="ChartCtrl_source\ChartMouseListener.h" />
+    <ClInclude Include="ChartCtrl_source\ChartMyTimeAxis.h" />
     <ClInclude Include="ChartCtrl_source\ChartPointsArray.h" />
     <ClInclude Include="ChartCtrl_source\ChartPointsSerie.h" />
     <ClInclude Include="ChartCtrl_source\ChartScrollBar.h" />

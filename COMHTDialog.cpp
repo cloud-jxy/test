@@ -18,13 +18,18 @@ CCOMHTDialog::CCOMHTDialog(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_COM_HT_DIALOG, pParent)
 {
 	m_count = 0;
-	m_ArrayLen = 100;
+	m_ArrayLen = CHAER_X_LEN;
+	m_f = NULL;
 }
 
 CCOMHTDialog::~CCOMHTDialog()
 {
-	free(m_x);
-	free(m_y);
+	//free(m_x);
+	//free(m_y);
+	KillTimer(1);
+	if (m_f) {
+		fclose(m_f);
+	}
 }
 
 void CCOMHTDialog::DoDataExchange(CDataExchange* pDX)
@@ -66,7 +71,9 @@ void CCOMHTDialog::OnCOMRecvHT(int h, int t) {
 
 	double diff = ms - m_timeFirst;
 	m_x[index] = diff / 1000;
-	m_y[index] = 100 * (double)t / (double)h;
+	m_y[index] = 100 * (double)h / (double)t;
+
+	writeToFile(h, t);
 }
 
 
@@ -86,7 +93,7 @@ BOOL CCOMHTDialog::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);
 
 	// 设置chart
-	CChartStandardAxis *pBottomAxis = m_chart.CreateStandardAxis(CChartCtrl::BottomAxis);
+	CChartMyTimeAxis *pBottomAxis = m_chart.CreateMyTimeAxis(CChartCtrl::BottomAxis);
 	pBottomAxis->SetAutomatic(true);
 	pBottomAxis->SetTickIncrement(false, 1);
 	pBottomAxis->GetLabel()->SetText(_T("时间（秒）"));
@@ -110,6 +117,8 @@ void CCOMHTDialog::OnTimer(UINT_PTR nIDEvent)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if (nIDEvent == 1) {
 
+		//WriteToFile();
+
 		if (m_count == 0) {
 			return;
 		}
@@ -120,7 +129,7 @@ void CCOMHTDialog::OnTimer(UINT_PTR nIDEvent)
 
 		CChartLineSerie *pLineSerie = m_chart.CreateLineSerie();
 		pLineSerie->SetSeriesOrdering(poXOrdering);
-		pLineSerie->AddPoints(m_x, m_y, (m_count > 100) ? 100 : m_count);
+		pLineSerie->AddPoints(m_x, m_y, (m_count > CHAER_X_LEN) ? CHAER_X_LEN : m_count);
 
 		m_chart.GetLegend()->SetVisible(true);
 		m_chart.EnableRefresh(true);

@@ -55,6 +55,7 @@ class CChartSurfaceSerie;
 class CChartBarSerie;
 class CChartCandlestickSerie;
 class CChartGanttSerie;
+class CChartMyTimeAxis;
 
 /////////////////////////////////////////////////////////////////////////////
 // CChartCtrl window
@@ -88,6 +89,8 @@ public:
 		RightAxis,
 		TopAxis
 	};
+
+	CChartMyTimeAxis* CChartCtrl::CreateMyTimeAxis(EAxisPos axisPos);
 
 	//! Create and attach a standard axis to the control.
 	/**

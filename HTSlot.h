@@ -17,7 +17,7 @@ public:
 	CSerialPort *m_pSerialPort;
 	virtual void SetSerialPort(CSerialPort *p);;
 	virtual void ParseHT(char *data);
-	char m_curData[1024] = { 0 };
+	char m_curData[1024] ;
 
 	/*下面的变量及函数，可能是我太过谨慎了，即使暂不使用，也先保留*/
 	void Parse(int);
@@ -28,5 +28,7 @@ public:
 	int m_posOfParseData;
 
 	void StartMonitor();
+
+	long long m_count;
 };
 
