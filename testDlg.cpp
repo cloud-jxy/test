@@ -187,7 +187,7 @@ BOOL CTestDlg::OnInitDialog()
 		CString tmp;
 		tmp.Format(_T("COM%d"), i + 1);
 		m_cbxCOM.AddString(tmp);
-		m_arraySp[i].init(tmp.GetBuffer(0));
+		m_arraySp[i].init(tmp.GetBuffer(0), 115200);
 		m_arrayCOMDlg[i] = NULL;
 	}
 
@@ -933,6 +933,7 @@ void CTestDlg::OnBnClickedButtonComOpen()
 	if (status == _T("打开")) {
 		result = sp->open();
 		std::string name = sp->getPortName();
+		int64 len = sp->getReadBufferSize();
 
 		if (!result) {
 			MessageBox(_T("端口打开失败"));
@@ -994,4 +995,34 @@ void CTestDlg::OnCbnSelchangeComboComPort()
 	else {
 		GetDlgItem(IDC_BUTTON_COM_OPEN)->SetWindowText(_T("打开"));
 	}
+}
+
+
+BOOL CTestDlg::DestroyWindow()
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	int i = 0;
+	for (i = 0; i < SP_NUM; i++) {
+		CDialog *dlg = m_arrayCOMDlg[i];
+		if (dlg) {
+			dlg->DestroyWindow();
+			delete dlg;
+		}
+	}
+
+	if (m_info_dialog) {
+		m_info_dialog->DestroyWindow();
+		delete m_info_dialog;
+	}
+
+	if (m_haide_protocol_dialog) {
+		m_haide_protocol_dialog->DestroyWindow();
+		delete m_haide_protocol_dialog;
+	}
+
+	if (m_navi_dialog) {
+		m_navi_dialog->DestroyWindow();
+		delete m_navi_dialog;
+	}
+	return __super::DestroyWindow();
 }
