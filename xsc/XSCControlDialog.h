@@ -19,5 +19,7 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
+	virtual void SetCtrlRect();
+
 	DECLARE_MESSAGE_MAP()
 };

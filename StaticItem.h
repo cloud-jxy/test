@@ -1,4 +1,5 @@
 #pragma once
+#include "ColorStatic.h"
 
 class StaticItemObj;
 class CStaticItem
@@ -7,8 +8,8 @@ public:
 	CStaticItem();
 	~CStaticItem();
 public:
-	CStatic m_ctrlKey;
-	CStatic m_ctrlValue;
+	CColorStatic m_ctrlKey;
+	CColorStatic m_ctrlValue;
 	int m_w;
 	int m_h;
 	int m_leftW;
@@ -21,5 +22,7 @@ public:
 	void Create(CWnd *pParent, StaticItemObj *pItem, CRect rtKey, CRect rtValue);
 
 	void Destory();
+
+	void SetItemValue(CString value);
 };
 

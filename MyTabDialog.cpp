@@ -165,7 +165,8 @@ int CMyTabDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		// TRACE("CXSCBaseDialog::ParseFrame: %f, %s\n", d_result, str_result);
 
 		itemCtrl = (CStaticItem *)item->m_pParam;
-		itemCtrl->m_ctrlValue.SetWindowText(str_result);
+		//itemCtrl->m_ctrlValue.SetWindowText(str_result);
+		itemCtrl->SetItemValue(str_result);
 	}
 
 	return 0;

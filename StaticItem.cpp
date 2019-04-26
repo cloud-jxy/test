@@ -42,3 +42,13 @@ void CStaticItem::Create(CWnd *pParent, StaticItemObj *pItem, CRect rtKey, CRect
 void CStaticItem::Destory() {
 
 }
+
+void CStaticItem::SetItemValue(CString value) {
+	m_ctrlValue.SetWindowText(value);
+	//if (value.CompareNoCase("¹Ø±Õ")) {
+	//	m_ctrlValue.SetTextColor(RGB(0, 0, 0));
+	//}
+	//else {
+	//	m_ctrlValue.SetTextColor(RGB(0, 255, 0));
+	//}
+}

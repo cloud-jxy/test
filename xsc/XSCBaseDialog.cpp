@@ -149,7 +149,7 @@ int CXSCBaseDialog::ParseFrame(VCI_CAN_OBJ frame) {
 		CStaticItem *item = (CStaticItem *)g_xscBase[0].m_pParam;
 		item->m_ctrlValue.SetWindowText(tmp);
 	}
-	else if (frame.ID == 0x18f4002) {
+	else if (frame.ID == 0x18f40002) {
 		memcpy(m_szXinghao, frame.Data, 8);
 		CString tmp;
 		tmp.Format(_T("%s"), m_szXinghao);

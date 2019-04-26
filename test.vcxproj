@@ -169,6 +169,7 @@
     <ClCompile Include="ChartCtrl_source\ChartSurfaceSerie.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartTitle.cpp" />
     <ClCompile Include="ChartCtrl_source\ChartXYSerie.cpp" />
+    <ClCompile Include="ColorStatic.cpp" />
     <ClCompile Include="COMHTDialog.cpp" />
     <ClCompile Include="CSerialPort\EnumSerial.cpp" />
     <ClCompile Include="FrameRuleDialog.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="ChartCtrl_source\ChartXYSerie.h" />
     <ClInclude Include="ChartCtrl_source\PointsOrdering.h" />
     <ClInclude Include="Cnterior.h" />
+    <ClInclude Include="ColorStatic.h" />
     <ClInclude Include="COMHTDialog.h" />
     <ClInclude Include="ControlCAN.h" />
     <ClInclude Include="CRange.h" />

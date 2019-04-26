@@ -32,8 +32,8 @@ StaticItemObj g_xscScreen[] = {
 	StaticItemObj(_T("吸口工作"), DEFAULT_VAL, _T("0x18F40100"), 1, 7, 1, (PtrFuncToString)(&CXSCScreenDialog::OpenOrClose)),
 	StaticItemObj(_T("挡板开"), DEFAULT_VAL, _T("0x18F40100"), 2, 0, 1, (PtrFuncToString)(&CXSCScreenDialog::OpenOrClose)),
 	StaticItemObj(_T("上盖开"), DEFAULT_VAL, _T("0x18F40100"), 2, 1, 1, (PtrFuncToString)(&CXSCScreenDialog::OpenOrClose)),
-	StaticItemObj(_T("发动机转速"), DEFAULT_VAL, _T("0x18F40103"), 0, 0, 16, (PtrFuncToString)(&CXSCScreenDialog::ValueToString), 0.125, 0),
-	StaticItemObj(_T("扫刷转速"), DEFAULT_VAL, _T("0x18F40103"), 2, 0, 8, (PtrFuncToString)(&CXSCScreenDialog::ValueToString), 1, 0)
+	StaticItemObj(_T("发动机转速"), DEFAULT_VAL, _T("0x18F40102"), 0, 0, 16, (PtrFuncToString)(&CXSCScreenDialog::ValueToString), 0.125, 0),
+	StaticItemObj(_T("扫刷转速"), DEFAULT_VAL, _T("0x18F40102"), 2, 0, 8, (PtrFuncToString)(&CXSCScreenDialog::ValueToString), 1, 0)
 };
 
 // CXSCScreenDialog 对话框
@@ -46,7 +46,7 @@ CXSCScreenDialog::CXSCScreenDialog(CWnd* pParent /*=NULL*/)
 	m_objs = g_xscScreen;
 	m_objCount = sizeof(g_xscScreen) / sizeof(g_xscScreen[0]);
 	m_leftW = 90;
-	m_rightW = 120;
+	m_rightW = 140;
 }
 
 CXSCScreenDialog::~CXSCScreenDialog()

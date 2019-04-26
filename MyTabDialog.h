@@ -34,7 +34,7 @@ public:
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 
-	void SetCtrlRect();
+	virtual void SetCtrlRect();
 	virtual int ParseFrame(VCI_CAN_OBJ frame);
 
 	CString OpenOrClose(double val);
